@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camilo García — Desarrollador de Software</title>
+  <meta name="description" content="Portafolio de Camilo Andrés García Almeida, desarrollador de software junior. Proyectos de desarrollo web, automatización y bases de datos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="top">
+    <a href="#top" class="nav__brand">CG<span>.</span></a>
+    <nav class="nav__links" aria-label="Navegación principal">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow reveal">Desarrollador de Software · Colombia</p>
+        <h1 class="hero__title reveal">Camilo<br>García</h1>
+        <p class="hero__lead reveal">Me gusta construir cosas y verlas funcionar de verdad: un bot que responde, una base de datos que entrega justo el dato que pedías, una página que hace lo que debe.</p>
+        <div class="hero__actions reveal">
+          <a href="#proyectos" class="btn btn--solid">Ver proyectos</a>
+          <a href="#contacto" class="btn btn--ghost">Contáctame</a>
+        </div>
+      </div>
+      <div class="hero__meta reveal">
+        <span class="mono">Junior · Campuslands</span>
+        <span class="mono">Automatización · Ciberseguridad</span>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section" id="sobre-mi">
+      <div class="section__head">
+        <span class="mono section__num">01</span>
+        <h2 class="section__title reveal">Sobre mí</h2>
+      </div>
+      <div class="about">
+        <div class="about__photo reveal">
+          <img src="assets/foto.jpg" alt="Retrato de Camilo García">
+        </div>
+        <div class="about__text reveal">
+          <p>Soy Camilo, desarrollador de software junior formado en <strong>Campuslands</strong>. Me metí en esto porque me gusta resolver problemas y, sobre todo, ver lo que construyo funcionando.</p>
+          <p>Me muevo cómodo entre el frontend y el backend, y disfruto los proyectos donde tengo que pensar cómo encajan las piezas. Últimamente lo que más me jala es la <strong>automatización, los bots y la ciberseguridad</strong>, que es hacia donde quiero seguir creciendo.</p>
+          <ul class="facts">
+            <li><span class="mono">Ubicación</span><span>Bucaramanga, Colombia</span></li>
+            <li><span class="mono">Formación</span><span>Téc. en Desarrollo de Software — Campuslands</span></li>
+            <li><span class="mono">Enfoque</span><span>Automatización · Ciberseguridad</span></li>
+            <li><span class="mono">Idiomas</span><span>Español (nativo) · Inglés (A2)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section class="section" id="habilidades">
+      <div class="section__head">
+        <span class="mono section__num">02</span>
+        <h2 class="section__title reveal">Habilidades</h2>
+      </div>
+      <div class="skills">
+        <div class="skills__group reveal">
+          <h3 class="mono">Lenguajes</h3>
+          <ul><li>Python</li><li>JavaScript</li><li>SQL</li></ul>
+        </div>
+        <div class="skills__group reveal">
+          <h3 class="mono">Frontend</h3>
+          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        </div>
+        <div class="skills__group reveal">
+          <h3 class="mono">Backend y datos</h3>
+          <ul><li>MySQL</li><li>API REST</li><li>n8n</li></ul>
+        </div>
+        <div class="skills__group reveal">
+          <h3 class="mono">Herramientas</h3>
+          <ul><li>Git</li><li>GitHub</li><li>Linux</li><li>MySQL Workbench</li><li>SCRUM</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="section" id="proyectos">
+      <div class="section__head">
+        <span class="mono section__num">03</span>
+        <h2 class="section__title reveal">Proyectos</h2>
+      </div>
+      <div class="projects">
+
+        <article class="project reveal">
+          <div class="project__top">
+            <h3 class="project__title">Banco ACME</h3>
+            <span class="project__tag mono">Web · JavaScript</span>
+          </div>
+          <p class="project__desc">Una banca web completa en JavaScript puro: transferencias, retiros, pagos, metas de ahorro e incluso tasas de cambio en vivo con web workers. Es el proyecto donde más me reté con la lógica.</p>
+          <div class="project__foot">
+            <span class="mono">JavaScript · Web Workers · localStorage</span>
+            <a href="https://github.com/CamiloGarcia079/CAMILO-BANCO-EVALUACION" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project__top">
+            <h3 class="project__title">DeliveryBot</h3>
+            <span class="project__tag mono">Automatización</span>
+          </div>
+          <p class="project__desc">Un bot que toma pedidos de una cafetería por Telegram, conectado a Google Sheets en tiempo real. Aquí fue donde aprendí a pensar en flujos de automatización de principio a fin.</p>
+          <div class="project__foot">
+            <span class="mono">n8n · Telegram API · Google Sheets</span>
+            <a href="https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project__top">
+            <h3 class="project__title">Campus Pizza</h3>
+            <span class="project__tag mono">Base de datos</span>
+          </div>
+          <p class="project__desc">Diseñé la base de datos de una pizzería y le escribí 20 consultas para sacarle información real: qué se vende más, quién compra más y cómo se mueven las ventas.</p>
+          <div class="project__foot">
+            <span class="mono">MySQL · SQL</span>
+            <a href="https://github.com/CamiloGarcia079/Evaluacion-Camilo-Garcia-3H-Campus-Pizza" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project__top">
+            <h3 class="project__title">Plan de Ahorro</h3>
+            <span class="project__tag mono">Web</span>
+          </div>
+          <p class="project__desc">Una app sencilla para llevar el control de un plan de ahorro, hecha con HTML, CSS y JavaScript puro. Los datos se guardan en el navegador, así que no se pierden al cerrar la página.</p>
+          <div class="project__foot">
+            <span class="mono">HTML · CSS · JavaScript</span>
+            <a href="https://github.com/CamiloGarcia079/Plan-de-ahorro-Camilo-" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project project--wide reveal">
+          <div class="project__top">
+            <h3 class="project__title">GUARDIAN <span class="project__badge mono">Hackathon</span></h3>
+            <span class="project__tag mono">IA · Visión</span>
+          </div>
+          <p class="project__desc">En el Hackathon presencial de IA "Visual Agents" construimos en equipo un sistema predictivo de seguridad vial con visión por computadora. Me encargué de integrar los módulos del equipo y de liderar la presentación final.</p>
+          <div class="project__foot">
+            <span class="mono">Python · FiftyOne / Voxel51 · Gemini</span>
+            <span class="project__link project__link--muted">Proyecto en equipo</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section section--contact" id="contacto">
+      <div class="section__head">
+        <span class="mono section__num">04</span>
+        <h2 class="section__title reveal">Contacto</h2>
+      </div>
+      <div class="contact reveal">
+        <p class="contact__line">¿Tienes un proyecto en mente o una oportunidad? Escríbeme, me gusta hablar de lo que se puede construir.</p>
+        <div class="contact__links">
+          <a href="mailto:kaliko2411@gmail.com" class="contact__item">
+            <span class="mono">Correo</span>
+            <span>kaliko2411@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/camilo-garcia-7570693b7/" target="_blank" rel="noopener" class="contact__item">
+            <span class="mono">LinkedIn</span>
+            <span>camilo-garcia</span>
+          </a>
+          <a href="https://github.com/CamiloGarcia079" target="_blank" rel="noopener" class="contact__item">
+            <span class="mono">GitHub</span>
+            <span>CamiloGarcia079</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Camilo García</span>
+    <span class="mono">Hecho con HTML, CSS y JavaScript</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
