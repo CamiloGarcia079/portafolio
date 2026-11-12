@@ -6,12 +6,12 @@ En vivo: https://camilogarcia079.github.io/portafolio/
 
 ## Qué tiene
 
-- **Un flujo de automatización que se ejecuta en la portada.** Simula un pedido como el de mi DeliveryBot pasando por Telegram, el router, Google Sheets, cocina y cliente, con un registro de lo que va pasando. Se puede volver a ejecutar con un botón.
-- **Una demostración animada dentro de cada proyecto.** Una carrera de Fórmula 1 con clima y pit stops, un despacho de ambulancia en un mapa, una petición que atraviesa las capas de la arquitectura hexagonal, un chat de Telegram, la clave dinámica del banco (con el mismo algoritmo del proyecto), entre otras. Solo se animan mientras están en pantalla.
-- **Proyectos filtrables** (IA y automatización, backend, web) y una ficha de cada uno con el problema, lo que hice y el stack.
-- **Sección de tecnologías interactiva:** al tocar una tecnología dice en qué proyectos la usé.
-- Tema claro y oscuro (recuerda la elección), menú para celular, barra de progreso de lectura y animaciones al hacer scroll.
-- Respeta la opción del sistema de reducir movimiento y se puede recorrer con teclado.
+- **Español e inglés.** Un botón ES/EN cambia todo el sitio y recuerda la elección. También se puede abrir directo en inglés con `?lang=en`.
+- **Escrito para cualquier persona.** Cada proyecto dice primero, en palabras simples, para qué sirve, y cada grupo de tecnologías explica qué es.
+- **Habilidades blandas con ejemplos reales:** liderazgo, comunicación, trabajo en equipo, aprendizaje rápido, resolución de problemas y responsabilidad.
+- **Cuatro proyectos destacados, cada uno con su simulación:** una carrera de Fórmula 1 con clima y pit stops, el despacho de una ambulancia en VitalRoute, un chat de Telegram tomando un pedido en DeliveryBot y el calendario de reservas con factura de Renta de Herramientas. Solo se animan mientras están en pantalla.
+- **Contacto directo:** un formulario que envía el mensaje a mi correo (con FormSubmit), un botón para redactar el correo desde el programa de correo del visitante y otro para abrirlo en Gmail.
+- Flujo de automatización interactivo en la portada, tema claro y oscuro, menú para celular y accesibilidad (teclado y reducción de movimiento).
 
 ## Tecnologías
 
@@ -22,10 +22,11 @@ HTML, CSS y JavaScript, sin frameworks ni proceso de compilación. GitHub Pages 
 ```text
 index.html          estructura de la página
 css/styles.css      estilos, temas y diseño responsive
-js/proyectos.js     datos de los proyectos y del stack
+js/i18n.js          textos en inglés y funciones para cambiar de idioma
+js/proyectos.js     proyectos, habilidades y tecnologías en los dos idiomas
 js/demos.js         una función por proyecto que dibuja su demostración
 js/logos.js         logos de las tecnologías (simple-icons, licencia CC0)
-js/main.js          comportamiento: tema, menú, flujo, filtros, ficha y animaciones
+js/main.js          comportamiento: idioma, tema, menú, flujo, tarjetas, ficha y formulario
 assets/             foto (normal y 4K) y favicon
 ```
 
@@ -35,6 +36,8 @@ assets/             foto (normal y 4K) y favicon
 - **El flujo de la portada es un SVG normal.** JavaScript enciende cada nodo y mueve el punto por la línea con `getPointAtLength`, sin librerías de animación.
 - **Cada demostración es independiente.** Devuelve `iniciar` y `detener`, y `main.js` las enciende con `IntersectionObserver` solo cuando se ven.
 - **Las animaciones de aparición usan `IntersectionObserver`**, así solo se activan cuando el elemento entra en pantalla.
+- **Traducción sin duplicar el HTML.** El español está en `index.html`; al cargar se guarda y `i18n.js` solo tiene el inglés. Los elementos traducibles llevan `data-i18n`.
+- **El formulario no necesita servidor propio.** Se envía a FormSubmit con `fetch`; si falla, el visitante puede redactar el correo desde su propia cuenta.
 - **El tema se aplica antes de pintar la página** con un script corto en el `<head>`, para que no parpadee al recargar.
 
 ## Cómo verlo en local

@@ -1,8 +1,8 @@
 /*
- * Demostraciones animadas de cada proyecto.
+ * Simulaciones animadas de los proyectos destacados.
  * Cada función recibe el contenedor, dibuja su escena y devuelve { iniciar, detener }.
- * main.js las enciende solo cuando la tarjeta está en pantalla y las apaga al salir,
- * así no gastan batería ni procesador cuando nadie las ve.
+ * main.js las enciende solo cuando la tarjeta está en pantalla y las apaga al salir.
+ * Los textos usan L({ es, en }) de i18n.js para salir en el idioma elegido.
  */
 
 const DEMOS = (() => {
@@ -24,7 +24,7 @@ const DEMOS = (() => {
     };
   }
 
-  // Ejecuta una lista de pasos [esperaMs, funcion] y vuelve a empezar al terminar
+  // Ejecuta una lista de pasos [esperaMs, funcion] y avisa al terminar
   function secuencia(r, pasos, alTerminar) {
     let t = 0;
     pasos.forEach(([ms, fn]) => { t += ms; r.en(t, fn); });
@@ -32,14 +32,17 @@ const DEMOS = (() => {
   }
 
   /* ================= Fórmula 1 ================= */
+  const PISTA = 'M250 259 L120 259 C70 259 40 236 40 200 C40 168 64 150 92 140 C130 126 132 96 112 74 C96 56 110 30 140 28 C176 26 196 46 214 70 C232 94 262 98 286 82 C318 60 340 30 380 28 C428 26 470 50 476 92 C482 132 452 150 420 160 C392 169 388 196 410 214 C432 232 424 259 388 259 Z';
+
   function f1(el) {
+    // Pilotos y nivel tomados de DataInitializer.java
     const PILOTOS = [
       ['VER', 'Verstappen', '#3671C6', 97], ['HAM', 'Hamilton', '#27F4D2', 96],
       ['LEC', 'Leclerc', '#E8002D', 92], ['NOR', 'Norris', '#FF8000', 90],
       ['ALO', 'Alonso', '#229971', 91], ['GAS', 'Gasly', '#FF87BC', 84]
     ];
-    // Factores de tiempo de vuelta tomados de CondicionClimatica.java
-    const CLIMAS = [['Seco', 1.00], ['Nublado', 1.05], ['Lluvioso', 1.15]];
+    // Factores de tiempo de vuelta de CondicionClimatica.java
+    const CLIMAS = [[{ es: 'Seco', en: 'Dry' }, 1.00, 'seco'], [{ es: 'Nublado', en: 'Cloudy' }, 1.05, 'nublado'], [{ es: 'Lluvioso', en: 'Rainy' }, 1.15, 'lluvia']];
     const VUELTAS = 5;
 
     el.innerHTML = `
@@ -53,11 +56,11 @@ const DEMOS = (() => {
         </svg>
         <div class="f1__panel">
           <div class="f1__hud">
-            <span class="mono">Vuelta <b class="f1__vuelta">1</b>/${VUELTAS}</span>
-            <span class="f1__clima mono">Seco</span>
+            <span class="mono">${L({ es: 'Vuelta', en: 'Lap' })} <b class="f1__vuelta">1</b>/${VUELTAS}</span>
+            <span class="f1__clima mono"></span>
           </div>
           <ol class="f1__tabla"></ol>
-          <p class="f1__evento mono">Semáforo en verde</p>
+          <p class="f1__evento mono"></p>
         </div>
       </div>`;
     const svg = el.querySelector('svg');
@@ -70,8 +73,9 @@ const DEMOS = (() => {
     const vueltaEl = el.querySelector('.f1__vuelta');
     let r, autos, clima, terminado;
 
+    const ponerClima = (c) => { clima = c; climaEl.textContent = L(c[0]); climaEl.dataset.clima = c[2]; };
+
     function preparar() {
-      clima = CLIMAS[0];
       terminado = false;
       capa.innerHTML = '';
       autos = PILOTOS.map(([cod, nombre, color, nivel], i) => {
@@ -80,21 +84,20 @@ const DEMOS = (() => {
         capa.append(g);
         return { cod, nombre, color, nivel, g, dist: -i * 0.018, combustible: 1, pit: 0 };
       });
-      climaEl.textContent = clima[0];
-      climaEl.dataset.clima = clima[0];
-      evento.textContent = 'Semáforo en verde';
+      ponerClima(CLIMAS[0]);
+      evento.textContent = L({ es: 'Semáforo en verde', en: 'Lights out' });
       dibujar();
     }
 
     function dibujar() {
       autos.forEach((a) => {
-        const p = pista.getPointAtLength(((a.dist % 1) + 1) % 1 * largo);
+        const p = pista.getPointAtLength((((a.dist % 1) + 1) % 1) * largo);
         a.g.setAttribute('transform', `translate(${p.x} ${p.y})`);
       });
       const orden = [...autos].sort((a, b) => b.dist - a.dist);
       tabla.innerHTML = orden.map((a, i) => `
         <li><span class="mono">${i + 1}</span><i style="background:${a.color}"></i><b>${a.cod}</b>
-        <span class="f1__gap mono">${i === 0 ? 'Líder' : '+' + ((orden[0].dist - a.dist) * 84).toFixed(1) + 's'}</span>
+        <span class="f1__gap mono">${i === 0 ? L({ es: 'Líder', en: 'Leader' }) : '+' + ((orden[0].dist - a.dist) * 84).toFixed(1) + 's'}</span>
         ${a.pit > 0 ? '<em class="mono">PIT</em>' : ''}</li>`).join('');
       vueltaEl.textContent = Math.min(VUELTAS, Math.max(1, Math.floor(orden[0].dist) + 1));
     }
@@ -106,10 +109,8 @@ const DEMOS = (() => {
       // El clima cambia cada pocos segundos, como GeneradorClima
       const cambiarClima = () => {
         if (terminado) return;
-        clima = CLIMAS[(CLIMAS.indexOf(clima) + 1) % CLIMAS.length];
-        climaEl.textContent = clima[0];
-        climaEl.dataset.clima = clima[0];
-        evento.textContent = `Cambio de clima: ${clima[0].toLowerCase()}`;
+        ponerClima(CLIMAS[(CLIMAS.indexOf(clima) + 1) % CLIMAS.length]);
+        evento.textContent = L({ es: 'Cambio de clima: ', en: 'Weather change: ' }) + L(clima[0]).toLowerCase();
         r.en(5200, cambiarClima);
       };
       r.en(5200, cambiarClima);
@@ -124,21 +125,20 @@ const DEMOS = (() => {
           a.combustible -= dt * (0.05 + Math.random() * 0.02);
           if (a.combustible < 0.18) {          // como necesitaPitStop()
             a.combustible = 1; a.pit = 1.3;
-            evento.textContent = `${a.nombre} entra a boxes`;
+            evento.textContent = a.nombre + L({ es: ' entra a boxes', en: ' pits' });
           }
         });
         dibujar();
         const lider = autos.reduce((m, a) => (a.dist > m.dist ? a : m));
         if (lider.dist >= VUELTAS) {
           terminado = true;
-          evento.innerHTML = `Bandera a cuadros: gana <b>${lider.nombre}</b>`;
+          evento.innerHTML = L({ es: 'Bandera a cuadros: gana ', en: 'Chequered flag: ' }) + `<b>${lider.nombre}</b>` + L({ es: '', en: ' wins' });
           r.en(3500, () => { r.parar(); iniciar(); });
         }
       });
     }
     return { iniciar, detener: () => r && r.parar() };
   }
-  const PISTA = 'M250 259 L120 259 C70 259 40 236 40 200 C40 168 64 150 92 140 C130 126 132 96 112 74 C96 56 110 30 140 28 C176 26 196 46 214 70 C232 94 262 98 286 82 C318 60 340 30 380 28 C428 26 470 50 476 92 C482 132 452 150 420 160 C392 169 388 196 410 214 C432 232 424 259 388 259 Z';
 
   /* ================= VitalRoute ================= */
   function vitalroute(el) {
@@ -154,7 +154,7 @@ const DEMOS = (() => {
         <path class="vr__ruta" d=""/>
         <circle class="vr__amb" r="6" opacity="0"/>
       </svg>
-      <div class="demo__chips"><span class="mono vr__estado">centro de mando · en línea</span></div>`;
+      <div class="demo__chips"><span class="mono vr__estado"></span></div>`;
     const svg = el.querySelector('svg');
     const alerta = svg.querySelector('.vr__alerta');
     const ruta = svg.querySelector('.vr__ruta');
@@ -166,60 +166,62 @@ const DEMOS = (() => {
       { p: [240, 140], c: 2, tri: 'AMARILLO', d: 'M240 140 H330' },
       { p: [150, 40], c: 1, tri: 'ROJO', d: 'M150 40 V140 H60' }
     ];
+    const triaje = { ROJO: { es: 'ROJO', en: 'RED' }, AMARILLO: { es: 'AMARILLO', en: 'YELLOW' } };
     let r, n = 0;
+    estado.textContent = L({ es: 'centro de mando · en línea', en: 'command center · online' });
     const iniciar = () => {
       r = reloj();
       const caso = casos[n++ % casos.length];
       clin.forEach((g) => g.classList.remove('is-on'));
       alerta.setAttribute('transform', `translate(${caso.p[0]} ${caso.p[1]})`);
       ruta.setAttribute('d', caso.d);
-      const L = ruta.getTotalLength();
-      ruta.style.strokeDasharray = L; ruta.style.strokeDashoffset = L;
+      const largo = ruta.getTotalLength();
+      ruta.style.transition = 'none';
+      ruta.style.strokeDasharray = largo; ruta.style.strokeDashoffset = largo;
       amb.setAttribute('opacity', 0);
       secuencia(r, [
-        [300, () => { alerta.setAttribute('opacity', 1); estado.textContent = 'emergencia recibida · paramédico'; }],
-        [1000, () => { estado.innerHTML = `triaje: <b data-t="${caso.tri}">${caso.tri}</b> · agente decide clínica`; }],
-        [1100, () => { clin[caso.c].classList.add('is-on'); ruta.style.transition = 'stroke-dashoffset 1.6s ease'; ruta.style.strokeDashoffset = 0; estado.textContent = 'despacho enviado por WebSocket'; }],
+        [300, () => { alerta.setAttribute('opacity', 1); estado.textContent = L({ es: 'emergencia recibida · paramédico', en: 'emergency received · paramedic' }); }],
+        [1000, () => { estado.innerHTML = `${L({ es: 'triaje', en: 'triage' })}: <b data-t="${caso.tri}">${L(triaje[caso.tri])}</b> · ${L({ es: 'la IA elige clínica', en: 'AI picks the clinic' })}`; }],
+        [1100, () => { clin[caso.c].classList.add('is-on'); ruta.style.transition = 'stroke-dashoffset 1.6s ease'; ruta.style.strokeDashoffset = 0; estado.textContent = L({ es: 'despacho enviado en tiempo real', en: 'dispatch sent in real time' }); }],
         [300, () => {
           amb.setAttribute('opacity', 1);
           const t0 = performance.now();
           r.cuadro((dt, t) => {
             const k = Math.min((t - t0) / 1800, 1);
-            const p = ruta.getPointAtLength(L * k);
+            const p = ruta.getPointAtLength(largo * k);
             amb.setAttribute('cx', p.x); amb.setAttribute('cy', p.y);
           });
         }],
-        [2000, () => { estado.textContent = 'clínica notificada · cama reservada'; alerta.setAttribute('opacity', 0); }],
-        [1800, () => { ruta.style.transition = 'none'; }]
+        [2000, () => { estado.textContent = L({ es: 'clínica avisada · cama reservada', en: 'clinic notified · bed reserved' }); alerta.setAttribute('opacity', 0); }],
+        [1800, () => {}]
       ], () => { r.parar(); iniciar(); });
     };
     return { iniciar, detener: () => r && r.parar() };
   }
 
-  /* ================= MindConnect ================= */
-  function mindconnect(el) {
-    const capas = [
-      ['GET /api/countries', 'pet'], ['JwtFilter', 'inf'], ['Controller', 'inf'],
-      ['UseCase', 'app'], ['Country', 'dom'], ['Repository', 'inf'], ['PostgreSQL', 'db']
+  /* ================= DeliveryBot ================= */
+  function deliverybot(el) {
+    const chat = [
+      ['yo', '/start'],
+      ['bot', { es: 'Hola, bienvenido. ¿Qué quieres pedir?', en: 'Hi, welcome. What would you like to order?' }, [{ es: 'Bebidas', en: 'Drinks' }, { es: 'Comidas', en: 'Food' }, { es: 'Mi carrito', en: 'My cart' }]],
+      ['yo', { es: 'Bebidas', en: 'Drinks' }],
+      ['bot', { es: 'Café americano · $3.000', en: 'Americano coffee · $3,000' }, [{ es: 'Agregar', en: 'Add' }]],
+      ['yo', { es: 'Confirmar pedido', en: 'Confirm order' }],
+      ['bot', { es: 'Pedido PED-20261212-48213 · Total $9.500. Cocina ya lo tiene.', en: 'Order PED-20261212-48213 · Total $9,500. The kitchen has it.' }]
     ];
-    el.innerHTML = `
-      <div class="mc">
-        <div class="mc__leyenda mono"><span data-c="inf">infraestructura</span><span data-c="app">aplicación</span><span data-c="dom">dominio</span></div>
-        <ol class="mc__fila">${capas.map(([t, c]) => `<li data-c="${c}" class="mono">${t}</li>`).join('')}</ol>
-        <div class="mc__resp mono"><span class="mc__codigo">esperando petición</span><span class="mc__tests">631 pruebas · 0 fallos</span></div>
-      </div>`;
-    const items = [...el.querySelectorAll('.mc__fila li')];
-    const codigo = el.querySelector('.mc__codigo');
+    el.innerHTML = `<div class="tg"><div class="tg__top"><i></i><span>DeliveryBot</span><small class="mono">bot</small></div><div class="tg__msgs"></div></div>`;
+    const caja = el.querySelector('.tg__msgs');
     let r;
     const iniciar = () => {
       r = reloj();
-      items.forEach((i) => i.classList.remove('is-on', 'is-back'));
-      codigo.textContent = 'Authorization: Bearer eyJhbGci…';
-      const pasos = items.map((it) => [380, () => it.classList.add('is-on')]);
-      const vuelta = [...items].reverse().slice(1).map((it) => [140, () => it.classList.add('is-back')]);
-      secuencia(r, [...pasos, [300, () => { codigo.textContent = 'consulta en mindconnect_schema'; }], ...vuelta,
-        [200, () => { codigo.innerHTML = '<b>200 OK</b> · [{"nameCountry":"Colombia","codeCountry":"CO"}]'; }],
-        [2600, () => {}]], () => { r.parar(); iniciar(); });
+      caja.innerHTML = '';
+      secuencia(r, chat.map(([quien, txt, botones]) => [quien === 'bot' ? 1000 : 900, () => {
+        const m = document.createElement('div');
+        m.className = 'tg__m tg__' + quien;
+        m.innerHTML = L(txt) + (botones ? `<div class="tg__btns">${botones.map((b) => `<span>${L(b)}</span>`).join('')}</div>` : '');
+        caja.append(m);
+        while (caja.children.length > 4) caja.firstElementChild.remove();
+      }]).concat([[2600, () => {}]]), () => { r.parar(); iniciar(); });
     };
     return { iniciar, detener: () => r && r.parar() };
   }
@@ -227,21 +229,21 @@ const DEMOS = (() => {
   /* ================= Renta de Herramientas ================= */
   function renta(el) {
     const dias = 14;
-    const filas = ['Taladro percutor', 'Andamio 2 m', 'Mezcladora'];
+    const filas = [{ es: 'Taladro percutor', en: 'Hammer drill' }, { es: 'Andamio 2 m', en: 'Scaffold 2 m' }, { es: 'Mezcladora', en: 'Concrete mixer' }];
     el.innerHTML = `
       <div class="rt">
         <div class="rt__cal">
-          ${filas.map((f, i) => `<div class="rt__fila"><span class="mono">${f}</span><div class="rt__dias" data-fila="${i}">${'<i></i>'.repeat(dias)}</div></div>`).join('')}
+          ${filas.map((f, i) => `<div class="rt__fila"><span class="mono">${L(f)}</span><div class="rt__dias" data-fila="${i}">${'<i></i>'.repeat(dias)}</div></div>`).join('')}
         </div>
         <div class="rt__fact mono">
           <div><span>Subtotal</span><b class="rt__sub">$0</b></div>
-          <div><span>IVA 19 %</span><b class="rt__iva">$0</b></div>
+          <div><span>${L({ es: 'IVA 19 %', en: 'VAT 19%' })}</span><b class="rt__iva">$0</b></div>
           <div class="rt__tot"><span>Total</span><b class="rt__total">$0</b></div>
         </div>
-        <p class="rt__msg mono">reservas por fechas</p>
+        <p class="rt__msg mono"></p>
       </div>`;
     const msg = el.querySelector('.rt__msg');
-    const fmt = (n) => '$' + Math.round(n).toLocaleString('es-CO');
+    const fmt = (n) => '$' + Math.round(n).toLocaleString(idioma() === 'en' ? 'en-US' : 'es-CO');
     let r;
     const bloque = (fila, desde, hasta, clase) => {
       const ds = el.querySelectorAll(`[data-fila="${fila}"] i`);
@@ -256,203 +258,19 @@ const DEMOS = (() => {
       r = reloj();
       el.querySelectorAll('.rt__dias i').forEach((i) => { i.className = ''; });
       ['.rt__sub', '.rt__iva', '.rt__total'].forEach((s) => { el.querySelector(s).textContent = '$0'; });
-      msg.textContent = 'reservas por fechas';
+      msg.textContent = L({ es: 'reservas por fechas', en: 'bookings by date' });
       secuencia(r, [
         [500, () => bloque(0, 1, 4, 'ok')],
         [600, () => bloque(1, 3, 9, 'ok')],
         [600, () => bloque(2, 6, 8, 'ok')],
-        [800, () => { bloque(0, 3, 6, 'no'); msg.textContent = 'taladro ocupado del día 4 al 5: reserva rechazada'; }],
-        [1600, () => { bloque(0, 3, 4, 'ok'); bloque(0, 5, 6, ''); bloque(0, 7, 9, 'nuevo'); msg.textContent = 'nueva fecha disponible: reserva aprobada'; }],
-        [900, () => { contar('.rt__sub', 270000); contar('.rt__iva', 51300); contar('.rt__total', 321300); msg.textContent = 'factura calculada en el servidor (BigDecimal)'; }],
+        [800, () => { bloque(0, 3, 6, 'no'); msg.textContent = L({ es: 'taladro ocupado esos días: reserva rechazada', en: 'drill already booked those days: request rejected' }); }],
+        [1600, () => { bloque(0, 3, 4, 'ok'); bloque(0, 5, 6, ''); bloque(0, 7, 9, 'nuevo'); msg.textContent = L({ es: 'nueva fecha libre: reserva aprobada', en: 'new free dates: booking approved' }); }],
+        [900, () => { contar('.rt__sub', 270000); contar('.rt__iva', 51300); contar('.rt__total', 321300); msg.textContent = L({ es: 'factura calculada por el servidor', en: 'invoice calculated by the server' }); }],
         [3200, () => {}]
       ], () => { r.parar(); iniciar(); });
     };
     return { iniciar, detener: () => r && r.parar() };
   }
 
-  /* ================= Aduana-Copilot ================= */
-  function aduana(el) {
-    const lineas = [
-      ['Valor en aduana', '', '934,500.00'], ['IGI', '0 %', '0.00'],
-      ['DTA', '0.8 %', '7,476.00'], ['IVA', '0 %', '0.00'], ['Total estimado', '', '941,976.00']
-    ];
-    el.innerHTML = `
-      <div class="ad">
-        <p class="ad__agente mono"></p>
-        <div class="ad__hoja">${lineas.map(([c, t, v], i) => `<div class="ad__l${i === 4 ? ' ad__tot' : ''}"><span>${c}</span><em class="mono">${t}</em><b class="mono">${v}</b></div>`).join('')}</div>
-        <p class="ad__nota mono">tasas de muestra · cada cifra lleva fuente y fecha</p>
-      </div>`;
-    const ag = el.querySelector('.ad__agente');
-    const ls = [...el.querySelectorAll('.ad__l')];
-    let r;
-    const escribir = (txt) => new Promise((ok) => {
-      let i = 0; ag.textContent = '';
-      const t = () => { ag.textContent = txt.slice(0, ++i); if (i < txt.length) r.en(22, t); else ok(); };
-      t();
-    });
-    const iniciar = () => {
-      r = reloj();
-      ls.forEach((l) => l.classList.remove('is-on'));
-      escribir('agente > buscar_fraccion("insulina")').then(() => r.en(600, () =>
-        escribir('agente > calcular_cotizacion(...)  // el motor hace las cuentas').then(() => {
-          secuencia(r, ls.map((l) => [380, () => l.classList.add('is-on')]).concat([[3000, () => {}]]), () => { r.parar(); iniciar(); });
-        })));
-    };
-    return { iniciar, detener: () => r && r.parar() };
-  }
-
-  /* ================= DeliveryBot ================= */
-  function deliverybot(el) {
-    const chat = [
-      ['yo', '/start'],
-      ['bot', 'Hola, bienvenido. ¿Qué quieres pedir?', ['Bebidas', 'Comidas', 'Mi carrito']],
-      ['yo', 'Bebidas'],
-      ['bot', 'Café americano · $3.000', ['Agregar']],
-      ['yo', 'Confirmar pedido'],
-      ['bot', 'Pedido PED-20261212-48213 · Total $9.500. Cocina ya lo tiene.']
-    ];
-    el.innerHTML = `<div class="tg"><div class="tg__top"><i></i><span>DeliveryBot</span><small class="mono">bot</small></div><div class="tg__msgs"></div></div>`;
-    const caja = el.querySelector('.tg__msgs');
-    let r;
-    const iniciar = () => {
-      r = reloj();
-      caja.innerHTML = '';
-      secuencia(r, chat.map(([quien, txt, botones]) => [quien === 'bot' ? 1000 : 900, () => {
-        const m = document.createElement('div');
-        m.className = 'tg__m tg__' + quien;
-        m.innerHTML = txt + (botones ? `<div class="tg__btns">${botones.map((b) => `<span>${b}</span>`).join('')}</div>` : '');
-        caja.append(m);
-        while (caja.children.length > 4) caja.firstElementChild.remove();
-      }]).concat([[2600, () => {}]]), () => { r.parar(); iniciar(); });
-    };
-    return { iniciar, detener: () => r && r.parar() };
-  }
-
-  /* ================= Analizador de CVs ================= */
-  function cv(el) {
-    const casos = [
-      ['cv_ejemplo_laura_mendez.pdf', 86, 'Entrevistar', 'Java · Spring Boot · 3 años'],
-      ['cv_ejemplo_andres_cardenas.pdf', 31, 'No avanzar por ahora', 'Diseño gráfico · aprendiendo']
-    ];
-    el.innerHTML = `
-      <div class="cv">
-        <div class="cv__doc"><span class="cv__scan"></span>${'<i></i>'.repeat(7)}</div>
-        <div class="cv__res">
-          <p class="cv__file mono"></p>
-          <svg viewBox="0 0 120 70" class="cv__gauge"><path class="cv__base" d="M10 64 A50 50 0 0 1 110 64"/><path class="cv__val" d="M10 64 A50 50 0 0 1 110 64"/></svg>
-          <p class="cv__pct"><b>0</b>% de ajuste</p>
-          <p class="cv__rec mono"></p>
-        </div>
-      </div>`;
-    const val = el.querySelector('.cv__val');
-    const L = val.getTotalLength();
-    val.style.strokeDasharray = L;
-    let r, n = 0;
-    const iniciar = () => {
-      r = reloj();
-      const [file, pct, rec, perfil] = casos[n++ % casos.length];
-      el.querySelector('.cv__file').textContent = file;
-      el.querySelector('.cv__rec').textContent = 'leyendo PDF…';
-      el.querySelector('.cv__pct b').textContent = 0;
-      val.style.transition = 'none'; val.style.strokeDashoffset = L;
-      el.classList.remove('is-bajo');
-      el.querySelector('.cv__doc').classList.add('is-scan');
-      secuencia(r, [
-        [1600, () => { el.querySelector('.cv__doc').classList.remove('is-scan'); el.querySelector('.cv__rec').textContent = perfil; }],
-        [400, () => {
-          el.classList.toggle('is-bajo', pct < 50);
-          val.style.transition = 'stroke-dashoffset 1.2s ease'; val.style.strokeDashoffset = L * (1 - pct / 100);
-          const b = el.querySelector('.cv__pct b'), t0 = performance.now();
-          const paso = (t) => { const k = Math.min((t - t0) / 1200, 1); b.textContent = Math.round(pct * k); if (k < 1) requestAnimationFrame(paso); };
-          requestAnimationFrame(paso);
-        }],
-        [1400, () => { el.querySelector('.cv__rec').textContent = 'recomendación: ' + rec; }],
-        [2600, () => {}]
-      ], () => { r.parar(); iniciar(); });
-    };
-    return { iniciar, detener: () => r && r.parar() };
-  }
-
-  /* ================= Tribuna Global ================= */
-  function tribuna(el) {
-    const ops = [
-      ['"Qué definición, el mejor del partido."', 'positiva'],
-      ['"Hoy no apareció en todo el segundo tiempo."', 'negativa'],
-      ['"Buen pase, pero falló dos goles claros."', 'mixta'],
-      ['"Jugó de lateral izquierdo."', 'neutra']
-    ];
-    el.innerHTML = `
-      <div class="tb">
-        <p class="tb__op"></p>
-        <p class="tb__res mono"></p>
-        <div class="tb__barras">${['positiva', 'negativa', 'mixta', 'neutra'].map((s) => `<div data-s="${s}"><span class="mono">${s}</span><i><b></b></i><em class="mono">0</em></div>`).join('')}</div>
-      </div>`;
-    const cuenta = { positiva: 0, negativa: 0, mixta: 0, neutra: 0 };
-    let r, n = 0;
-    const pintar = () => Object.entries(cuenta).forEach(([s, c]) => {
-      const fila = el.querySelector(`.tb__barras [data-s="${s}"]`);
-      fila.querySelector('b').style.width = Math.min(c * 18, 100) + '%';
-      fila.querySelector('em').textContent = c;
-    });
-    const iniciar = () => {
-      r = reloj();
-      const una = () => {
-        const [txt, s] = ops[n++ % ops.length];
-        el.querySelector('.tb__op').textContent = txt;
-        el.querySelector('.tb__res').innerHTML = 'clasificando…';
-        r.en(1100, () => {
-          el.querySelector('.tb__res').innerHTML = `sentimiento: <b data-s="${s}">${s}</b> · guardado`;
-          cuenta[s]++; if (Object.values(cuenta).some((c) => c > 5)) Object.keys(cuenta).forEach((k) => { cuenta[k] = 0; });
-          pintar();
-          r.en(1800, una);
-        });
-      };
-      pintar(); una();
-    };
-    return { iniciar, detener: () => r && r.parar() };
-  }
-
-  /* ================= Banco ACME ================= */
-  function banco(el) {
-    // Mismo algoritmo que js/6_clave_dinamica.js del proyecto
-    const clave = () => String((Math.floor(Date.now() / 30000) * 99991 + 12345) % 1000000).padStart(6, '0');
-    el.innerHTML = `
-      <div class="bk">
-        <div class="bk__card">
-          <span class="mono">Banco ACME · cuenta 4012</span>
-          <b class="bk__saldo">$0</b>
-          <small>saldo disponible</small>
-        </div>
-        <div class="bk__lado">
-          <div class="bk__token"><small>Clave dinámica</small><b class="mono bk__clave">------</b><i><span class="bk__barra"></span></i></div>
-          <ul class="bk__mov mono"></ul>
-        </div>
-      </div>`;
-    const saldoEl = el.querySelector('.bk__saldo');
-    const movs = el.querySelector('.bk__mov');
-    const ops = [['Consignación', 500000], ['Pago luz · ref 8812', -84300], ['Transferencia a 2207', -120000], ['Meta de ahorro', -50000]];
-    const fmt = (n) => '$' + Math.round(n).toLocaleString('es-CO');
-    let r, saldo, mostrado;
-    const iniciar = () => {
-      r = reloj();
-      saldo = 1250000; mostrado = 0; movs.innerHTML = '';
-      r.cuadro((dt) => {
-        mostrado += (saldo - mostrado) * Math.min(dt * 6, 1);
-        saldoEl.textContent = fmt(mostrado);
-        const resta = 30 - (Date.now() / 1000) % 30;
-        el.querySelector('.bk__barra').style.width = (resta / 30 * 100) + '%';
-        el.querySelector('.bk__clave').textContent = clave();
-      });
-      secuencia(r, ops.map(([t, v]) => [1400, () => {
-        saldo += v;
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${t}</span><b class="${v > 0 ? 'in' : 'out'}">${v > 0 ? '+' : '−'}${fmt(Math.abs(v))}</b>`;
-        movs.prepend(li);
-        while (movs.children.length > 3) movs.lastElementChild.remove();
-      }]).concat([[3000, () => {}]]), () => { r.parar(); iniciar(); });
-    };
-    return { iniciar, detener: () => r && r.parar() };
-  }
-
-  return { f1, vitalroute, mindconnect, renta, aduana, deliverybot, cv, tribuna, banco };
+  return { f1, vitalroute, deliverybot, renta };
 })();
