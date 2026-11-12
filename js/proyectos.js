@@ -133,13 +133,20 @@ const PROYECTOS = [
   }
 ];
 
-/* ---------- Lenguajes que domino (tarjetas grandes) ---------- */
+/* ---------- Lenguajes que domino ----------
+ * Cada uno enlaza al proyecto (y a la carpeta) donde mejor se ve aplicado.
+ */
 const LENGUAJES = [
-  { n: 'Java', logo: 'Openjdk', uso: { es: 'APIs y aplicaciones de escritorio', en: 'APIs and desktop apps' }, donde: 'Fórmula 1, Renta de Herramientas, MindConnect' },
-  { n: 'Python', logo: 'Python', uso: { es: 'Inteligencia artificial', en: 'Artificial intelligence' }, donde: 'Analizador de CVs, Tribuna Global, Aduana-Copilot' },
-  { n: 'TypeScript', logo: 'Typescript', uso: { es: 'Servidores y paneles en tiempo real', en: 'Servers and real-time dashboards' }, donde: 'VitalRoute, Aduana-Copilot' },
-  { n: 'JavaScript', logo: 'Javascript', uso: { es: 'Web y automatización', en: 'Web and automation' }, donde: 'DeliveryBot, Banco ACME, este portafolio' },
-  { n: 'SQL', logo: 'db', uso: { es: 'Bases de datos', en: 'Databases' }, donde: 'Renta de Herramientas, VitalRoute, MindConnect' }
+  { n: 'Java', logo: 'Openjdk', uso: { es: 'APIs y aplicaciones de escritorio', en: 'APIs and desktop apps' },
+    proyecto: 'Renta de Herramientas', repo: 'https://github.com/CamiloGarcia079/Evaluacion-Springboot-Herramientas---Camilo-Garcia-Almeida/tree/main/src/main/java' },
+  { n: 'Python', logo: 'Python', uso: { es: 'Inteligencia artificial', en: 'Artificial intelligence' },
+    proyecto: 'Analizador de CVs', repo: 'https://github.com/CamiloGarcia079/Hojas-de-vida-Chatbot---IA---Camilo-/tree/main/app/intermedio/cv_analyzer' },
+  { n: 'TypeScript', logo: 'Typescript', uso: { es: 'Servidores y paneles en tiempo real', en: 'Servers and real-time dashboards' },
+    proyecto: 'VitalRoute', repo: 'https://github.com/santiagoosorio0708e-wq/Vital-Route/tree/master/api' },
+  { n: 'JavaScript', logo: 'Javascript', uso: { es: 'Web y automatización', en: 'Web and automation' },
+    proyecto: 'Banco ACME', repo: 'https://github.com/CamiloGarcia079/CAMILO-BANCO-EVALUACION/tree/main/BANCO-ACME--main%20Camilo%20Garcia/js' },
+  { n: 'SQL', logo: 'db', uso: { es: 'Bases de datos', en: 'Databases' },
+    proyecto: 'Plataforma SST y PESV', repo: 'https://github.com/CamiloGarcia079/PROYECTO---EVALUACION-Camilo-Garc-a-/tree/main/sql' }
 ];
 
 /* ---------- Habilidades blandas, cada una con evidencia real ---------- */
@@ -170,37 +177,37 @@ const HABILIDADES = [
     e: { es: 'Mis proyectos suman más de 850 pruebas automáticas que revisan el código en segundos.', en: 'My projects add up to 850+ automated tests that check the code in seconds.' } }
 ];
 
-/* ---------- Tecnologías: nombre, proyectos donde se usó y logo (js/logos.js) ---------- */
+/* ---------- Tecnologías: [nombre, proyecto que la demuestra, logo, enlace] ---------- */
 const STACK = [
   { grupo: { es: 'Frameworks', en: 'Frameworks' },
     simple: { es: 'Herramientas que aceleran la construcción de aplicaciones.', en: 'Tools that speed up building applications.' },
     items: [
-      ['Spring Boot', 'Renta de Herramientas, MindConnect', 'Springboot'],
-      ['Spring Security · JWT', 'Renta de Herramientas, MindConnect', 'Springsecurity'],
-      ['Express', 'VitalRoute, Aduana-Copilot', 'Express'],
-      ['React', 'VitalRoute, Aduana-Copilot', 'React'],
-      ['Streamlit', 'Analizador de CVs, Tribuna Global', 'Streamlit']] },
+      ['Spring Boot', 'Renta de Herramientas', 'Springboot', 'https://github.com/CamiloGarcia079/Evaluacion-Springboot-Herramientas---Camilo-Garcia-Almeida'],
+      ['Spring Security · JWT', 'MindConnect', 'Springsecurity', 'https://github.com/CamiloGarcia079/trabajo-bound-context-con-spring-security/tree/main/infrastructure/src/main/java/com/mindconnect/infrastructure/security'],
+      ['Express', 'VitalRoute', 'Express', 'https://github.com/santiagoosorio0708e-wq/Vital-Route/tree/master/api'],
+      ['React', 'VitalRoute', 'React', 'https://github.com/santiagoosorio0708e-wq/Vital-Route/tree/master/web'],
+      ['Streamlit', 'Analizador de CVs', 'Streamlit', 'https://github.com/CamiloGarcia079/Hojas-de-vida-Chatbot---IA---Camilo-/tree/main/app/intermedio/cv_analyzer']] },
   { grupo: { es: 'Automatización e IA', en: 'Automation and AI' },
     simple: { es: 'Para que los procesos se hagan solos y para usar inteligencia artificial.', en: 'To make processes run on their own and to use artificial intelligence.' },
     items: [
-      ['n8n', 'DeliveryBot', 'N8n'],
-      ['Telegram Bot API', 'DeliveryBot', 'Telegram'],
-      ['LangChain', 'Analizador de CVs, Tribuna Global', 'Langchain'],
-      ['Gemini', 'Analizador de CVs, Tribuna Global, GUARDIAN', 'Googlegemini'],
-      ['Pydantic', 'Analizador de CVs', 'Pydantic']] },
+      ['n8n', 'DeliveryBot', 'N8n', 'https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo'],
+      ['Telegram Bot API', 'DeliveryBot', 'Telegram', 'https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo'],
+      ['LangChain', 'Analizador de CVs', 'Langchain', 'https://github.com/CamiloGarcia079/Hojas-de-vida-Chatbot---IA---Camilo-/tree/main/app/intermedio/cv_analyzer'],
+      ['Gemini', 'Tribuna Global', 'Googlegemini', 'https://github.com/CamiloGarcia079/Tribuna-Global-Camilo-Garcia-A'],
+      ['Pydantic', 'Analizador de CVs', 'Pydantic', 'https://github.com/CamiloGarcia079/Hojas-de-vida-Chatbot---IA---Camilo-/blob/main/app/intermedio/cv_analyzer/models/cv_model.py']] },
   { grupo: { es: 'Datos', en: 'Data' },
     simple: { es: 'Donde se guarda y organiza la información.', en: 'Where information is stored and organized.' },
     items: [
-      ['MySQL', 'Renta de Herramientas, VitalRoute', 'Mysql'],
-      ['PostgreSQL', 'MindConnect, Plataforma SST', 'Postgresql'],
-      ['Flyway', 'MindConnect', 'Flyway'],
-      ['Google Sheets', 'DeliveryBot', 'Googlesheets']] },
+      ['MySQL', 'Renta de Herramientas', 'Mysql', 'https://github.com/CamiloGarcia079/Evaluacion-Springboot-Herramientas---Camilo-Garcia-Almeida/tree/main/database'],
+      ['PostgreSQL', 'MindConnect', 'Postgresql', 'https://github.com/CamiloGarcia079/trabajo-bound-context-con-spring-security'],
+      ['Flyway', 'MindConnect', 'Flyway', 'https://github.com/CamiloGarcia079/trabajo-bound-context-con-spring-security/tree/main/infrastructure/src/main/resources/db/migration'],
+      ['Google Sheets', 'DeliveryBot', 'Googlesheets', 'https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo']] },
   { grupo: { es: 'Calidad y entrega', en: 'Quality and delivery' },
     simple: { es: 'Para comprobar que todo funciona y entregarlo listo para usar.', en: 'To check that everything works and ship it ready to use.' },
     items: [
-      ['JUnit 5', 'Renta de Herramientas, MindConnect', 'Junit5'],
-      ['pytest', 'Analizador de CVs, Tribuna Global, Aduana-Copilot', 'Pytest'],
-      ['Docker', 'Renta de Herramientas, VitalRoute', 'Docker'],
-      ['Postman', 'Renta de Herramientas, VitalRoute', 'Postman'],
-      ['Git · GitHub', '*', 'Github']] }
+      ['JUnit 5', 'MindConnect', 'Junit5', 'https://github.com/CamiloGarcia079/trabajo-bound-context-con-spring-security/tree/main/domain/src/test'],
+      ['pytest', 'Tribuna Global', 'Pytest', 'https://github.com/CamiloGarcia079/Tribuna-Global-Camilo-Garcia-A/tree/main/app/tribuna_global/tests'],
+      ['Docker', 'Renta de Herramientas', 'Docker', 'https://github.com/CamiloGarcia079/Evaluacion-Springboot-Herramientas---Camilo-Garcia-Almeida/blob/main/docker-compose.yml'],
+      ['Postman', 'Renta de Herramientas', 'Postman', 'https://github.com/CamiloGarcia079/Evaluacion-Springboot-Herramientas---Camilo-Garcia-Almeida/tree/main/postman'],
+      ['Git · GitHub', 'GitHub', 'Github', 'https://github.com/CamiloGarcia079']] }
 ];

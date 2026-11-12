@@ -279,35 +279,37 @@ function icono(logo) {
 }
 
 function pintarStack() {
-  // Lenguajes principales: tarjetas grandes con logo
+  const ver = idioma() === 'en' ? 'See it in' : 'Ver en';
+  // Lenguajes principales: cada tarjeta abre el proyecto donde se usó
   $('#lenguajes').innerHTML = LENGUAJES.map((l) => `
-    <button class="lang-card tech reveal" type="button" data-n="${l.n}" data-donde="${l.donde}">
+    <a class="lang-card tech reveal" href="${l.repo}" target="_blank" rel="noopener" data-n="${l.n}" data-donde="${l.proyecto}">
       ${icono(l.logo)}
       <span class="lang-card__n">${l.n}</span>
       <span class="lang-card__uso">${L(l.uso)}</span>
-    </button>`).join('');
+      <span class="lang-card__ir mono">${ver} ${l.proyecto} &nearr;</span>
+    </a>`).join('');
 
-  // Resto de tecnologías por grupo, con una explicación simple
+  // Resto de tecnologías por grupo; cada una también abre su proyecto
   $('#stack-grid').innerHTML = STACK.map((g) => `
     <div class="stack__row reveal">
       <div class="stack__grupo"><h3>${L(g.grupo)}</h3><p>${L(g.simple)}</p></div>
-      <div class="stack__items">${g.items.map(([nombre, proyectos, logo]) => {
-        const donde = proyectos === '*' ? (idioma() === 'en' ? 'all my projects' : 'todos mis proyectos') : proyectos;
-        return `<button class="tech" type="button" data-n="${nombre}" data-donde="${donde}">${icono(logo)}<span>${nombre}</span></button>`;
-      }).join('')}</div>
+      <div class="stack__items">${g.items.map(([nombre, proyecto, logo, url]) =>
+        `<a class="tech" href="${url}" target="_blank" rel="noopener" data-n="${nombre}" data-donde="${proyecto}">${icono(logo)}<span>${nombre}</span></a>`
+      ).join('')}</div>
     </div>`).join('');
 }
 
 function iniciarStack() {
   const grid = $('#stack');
   const donde = $('#stack-donde');
-  const mostrar = (btn) => {
-    $$('.tech', grid).forEach((t) => t.classList.toggle('is-on', t === btn));
-    donde.innerHTML = `${btn.dataset.n} &rarr; <b>${btn.dataset.donde}</b>`;
+  const mostrar = (el) => {
+    $$('.tech', grid).forEach((t) => t.classList.toggle('is-on', t === el));
+    const abrir = idioma() === 'en' ? 'click to open the project' : 'clic para abrir el proyecto';
+    donde.innerHTML = `${el.dataset.n} &rarr; <b>${el.dataset.donde}</b> · ${abrir}`;
   };
-  ['pointerover', 'click', 'focusin'].forEach((tipo) => grid.addEventListener(tipo, (ev) => {
-    const b = ev.target.closest('.tech');
-    if (b) mostrar(b);
+  ['pointerover', 'focusin'].forEach((tipo) => grid.addEventListener(tipo, (ev) => {
+    const t = ev.target.closest('.tech');
+    if (t) mostrar(t);
   }));
 }
 

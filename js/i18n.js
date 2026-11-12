@@ -44,8 +44,8 @@ const EN = {
   'proy.intro': 'Each project has a simulation so you can see how it works, even if you are not technical.',
   
   'stack.t': 'Languages and technologies',
-  'stack.intro': 'The languages I master and the tools I build with. Tap one to see which project I used it in.',
-  'stack.sel': 'Select a technology.',
+  'stack.intro': 'The languages I master and the tools I build with. Click any of them to open the project where I used it.',
+  'stack.sel': 'Hover over a technology.',
 
   'tray.t': 'Education and experience',
   'tray.1f': 'From December 2026', 'tray.1t': 'Professional internship · Globant',

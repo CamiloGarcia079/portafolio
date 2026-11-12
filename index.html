@@ -128,10 +128,16 @@
     <section class="section wrap" id="sobre-mi">
       <header class="section__head reveal"><span class="section__num">01</span><h2 data-i18n="sobre.t">Sobre mí</h2><span class="section__line"></span></header>
       <div class="about">
-        <div class="about__photo reveal">
-          <img src="assets/foto.jpg" srcset="assets/foto.jpg 900w, assets/foto-4k.jpg 2880w" sizes="(max-width: 980px) 320px, 340px" alt="Camilo García" width="900" height="1200" loading="lazy">
-          <span class="about__badge mono">Bucaramanga, CO</span>
-        </div>
+        <aside class="about__perfil reveal">
+          <img class="about__foto" src="assets/foto-perfil.jpg" alt="Camilo García" width="460" height="460" loading="lazy">
+          <h3 class="about__nombre">Camilo Andrés García Almeida</h3>
+          <p class="about__rol mono">Junior Developer</p>
+          <p class="about__lugar">Bucaramanga, Colombia</p>
+          <div class="about__cta">
+            <a class="btn btn--solid" href="https://github.com/CamiloGarcia079/hoja-de-vida-profesional/blob/main/HojaDeVida_Profesional_CamiloGarcia.pdf" target="_blank" rel="noopener" data-i18n="sobre.cv">Descargar hoja de vida</a>
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/camilo-garcia-7570693b7/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
         <div class="about__text">
           <p class="about__big reveal" data-i18n="sobre.big">Si una tarea se repite todos los días, se puede automatizar. Esa idea guía casi todo lo que construyo.</p>
           <p class="reveal" data-i18n="sobre.p1">Soy <strong>Técnico en Desarrollo de Software e Inteligencia Artificial</strong>, formado durante un año intensivo en <strong>CampusLands</strong>. En ese tiempo pasé de hacer páginas web sencillas a construir sistemas completos: aplicaciones seguras, asistentes por chat y herramientas con inteligencia artificial.</p>
@@ -140,15 +146,9 @@
           <dl class="facts reveal">
             <div><dt data-i18n="f.titulo">Título</dt><dd data-i18n="f.titulo.v">Técnico en Desarrollo de Software e IA</dd></div>
             <div><dt data-i18n="f.paso">Próximo paso</dt><dd data-i18n="f.paso.v">Etapa productiva · Globant</dd></div>
-            <div><dt data-i18n="f.ubic">Ubicación</dt><dd>Bucaramanga, Colombia</dd></div>
             <div><dt data-i18n="f.idiomas">Idiomas</dt><dd data-i18n="f.idiomas.v">Español nativo · Inglés A2</dd></div>
-            <div><dt data-i18n="f.rol">Rol</dt><dd data-i18n="f.rol.v">Junior Developer</dd></div>
             <div><dt data-i18n="f.enfoque">Enfoque</dt><dd data-i18n="f.enfoque.v">Automatización, bots y web</dd></div>
           </dl>
-          <div class="about__cta reveal">
-            <a class="btn btn--solid" href="https://github.com/CamiloGarcia079/hoja-de-vida-profesional/blob/main/HojaDeVida_Profesional_CamiloGarcia.pdf" target="_blank" rel="noopener" data-i18n="sobre.cv">Descargar hoja de vida</a>
-            <a class="btn btn--ghost" href="https://www.linkedin.com/in/camilo-garcia-7570693b7/" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
         </div>
       </div>
     </section>
@@ -156,10 +156,10 @@
     <!-- ============ LENGUAJES Y TECNOLOGÍAS ============ -->
     <section class="section wrap" id="stack">
       <header class="section__head reveal"><span class="section__num">02</span><h2 data-i18n="stack.t">Lenguajes y tecnologías</h2><span class="section__line"></span></header>
-      <p class="section__intro reveal" data-i18n="stack.intro">Los lenguajes que domino y las herramientas con las que construyo. Toca una para ver en qué proyecto la usé.</p>
+      <p class="section__intro reveal" data-i18n="stack.intro">Los lenguajes que domino y las herramientas con las que construyo. Haz clic en cualquiera para abrir el proyecto donde la usé.</p>
       <div class="langs" id="lenguajes"></div>
       <div class="stack" id="stack-grid"></div>
-      <p class="stack__where mono reveal" id="stack-donde" aria-live="polite" data-i18n="stack.sel">Selecciona una tecnología.</p>
+      <p class="stack__where mono reveal" id="stack-donde" aria-live="polite" data-i18n="stack.sel">Pasa el cursor sobre una tecnología.</p>
     </section>
 
     <!-- ============ HABILIDADES ============ -->

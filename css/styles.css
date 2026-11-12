@@ -786,3 +786,27 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .lang-card { align-items: start; align-content: start; }
 .edu__logo[src*="campuslands"] { background: #000; }
+
+/* Sobre mí: foto circular con tarjeta de perfil */
+.about { grid-template-columns: 300px 1fr; gap: 64px; align-items: start; }
+.about__perfil { position: sticky; top: 100px; display: grid; justify-items: center; text-align: center; gap: 4px;
+  padding: 32px 24px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); }
+.about__foto { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 16px;
+  box-shadow: 0 0 0 4px var(--panel), 0 0 0 5px color-mix(in srgb, var(--gold) 70%, transparent); }
+.about__nombre { font: 600 18px var(--display); line-height: 1.3; }
+.about__rol { font-size: 13px; color: var(--gold); }
+.about__lugar { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.about__perfil .about__cta { display: grid; gap: 10px; width: 100%; margin-top: 0; }
+.about__perfil .btn { width: 100%; }
+.facts { grid-template-columns: repeat(2, 1fr); }
+
+/* Tecnologías como enlaces a sus proyectos */
+a.tech, a.lang-card { text-decoration: none; color: inherit; }
+.lang-card__ir { margin-top: 8px; font-size: 11.5px; color: var(--gold); opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
+.lang-card:hover .lang-card__ir, .lang-card:focus-visible .lang-card__ir { opacity: 1; transform: none; }
+@media (hover: none) { .lang-card__ir { opacity: 1; transform: none; } }
+
+@media (max-width: 980px) {
+  .about { grid-template-columns: 1fr; }
+  .about__perfil { position: static; max-width: 420px; justify-self: center; width: 100%; }
+}

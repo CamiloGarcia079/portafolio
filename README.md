@@ -8,6 +8,7 @@ En vivo: https://camilogarcia079.github.io/portafolio/
 
 - **Logo propio:** una C geométrica de corte recto con un punto cuadrado dorado en la abertura. Es estático y funciona en un solo color.
 - **Español e inglés.** Un botón ES/EN cambia todo el sitio y recuerda la elección. También se puede abrir directo en inglés con `?lang=en`.
+- **Cada lenguaje y tecnología abre el proyecto donde se usó**, directo en la carpeta de GitHub que lo demuestra.
 - **Escrito para cualquier persona.** Cada proyecto dice primero, en palabras simples, para qué sirve, y cada grupo de tecnologías explica qué es.
 - **Habilidades blandas con ejemplos reales:** liderazgo, comunicación, trabajo en equipo, aprendizaje rápido, resolución de problemas y responsabilidad.
 - **Cuatro proyectos destacados, cada uno con su simulación:** una carrera de Fórmula 1 con clima y pit stops, el despacho de una ambulancia en VitalRoute, un chat de Telegram tomando un pedido en DeliveryBot y el calendario de reservas con factura de Renta de Herramientas. Solo se animan mientras están en pantalla.
@@ -28,7 +29,7 @@ js/proyectos.js     proyectos, habilidades y tecnologías en los dos idiomas
 js/demos.js         una función por proyecto que dibuja su demostración
 js/logos.js         logos de las tecnologías (simple-icons, licencia CC0)
 js/main.js          comportamiento: idioma, tema, menú, flujo, tarjetas, ficha y formulario
-assets/             foto (normal y 4K) y favicon
+assets/             foto de perfil, logos de Globant y CampusLands, logo propio y favicon
 ```
 
 ## Decisiones
