@@ -666,3 +666,20 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .contact__title { font-size: clamp(28px, 3.3vw, 42px); }
 .stats strong { color: var(--ink); }
+
+/* Logo: una C de tres tramos (los pasos de un proceso) que termina en un nodo */
+.logo { width: 38px; height: 38px; flex: none; }
+.logo__fondo { fill: #0a0e16; stroke: rgba(255,255,255,.14); stroke-width: 1.5; }
+.logo__t { fill: none; stroke-width: 7; stroke-linecap: round; transition: opacity .3s; }
+.logo__t1 { stroke: #e8b04b; } .logo__t2 { stroke: #c5c785; } .logo__t3 { stroke: #5eead4; }
+.logo__nodo { fill: #0a0e16; stroke: #e8b04b; stroke-width: 2.8; transform-box: fill-box; transform-origin: center; }
+/* Al cargar y al pasar el mouse, los tramos se encienden en orden como un flujo */
+@keyframes paso { 0%, 100% { opacity: 1; } 40% { opacity: .25; } }
+@keyframes nodo { 50% { transform: scale(1.25); } }
+.logo .logo__t { animation: paso 1.2s ease both; }
+.logo .logo__t2 { animation-delay: .15s; } .logo .logo__t3 { animation-delay: .3s; }
+.logo .logo__nodo { animation: nodo .6s ease .45s both; }
+.nav__brand:hover .logo__t { animation: paso 1s ease; }
+.nav__brand:hover .logo__t2 { animation-delay: .15s; }
+.nav__brand:hover .logo__t3 { animation-delay: .3s; }
+.nav__brand:hover .logo__nodo { animation: nodo .6s ease .45s; }

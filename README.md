@@ -6,6 +6,7 @@ En vivo: https://camilogarcia079.github.io/portafolio/
 
 ## Qué tiene
 
+- **Logo propio:** una C formada por tres tramos, los pasos de un proceso, que termina en un nodo como los de un flujo de automatización. Se anima al cargar y al pasar el mouse.
 - **Español e inglés.** Un botón ES/EN cambia todo el sitio y recuerda la elección. También se puede abrir directo en inglés con `?lang=en`.
 - **Escrito para cualquier persona.** Cada proyecto dice primero, en palabras simples, para qué sirve, y cada grupo de tecnologías explica qué es.
 - **Habilidades blandas con ejemplos reales:** liderazgo, comunicación, trabajo en equipo, aprendizaje rápido, resolución de problemas y responsabilidad.
