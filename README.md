@@ -1,8 +1,8 @@
-# 🌐 Portafolio — Camilo García
+# Portafolio — Camilo García
 
 Mi portafolio personal: una página web de una sola vista donde muestro quién soy, qué sé hacer y los proyectos en los que he trabajado. Está hecha con **HTML, CSS y JavaScript puro**, sin frameworks, y es totalmente responsive.
 
-🔗 **En vivo:** https://camilogarcia079.github.io/portafolio/
+ **En vivo:** https://camilogarcia079.github.io/portafolio/
 
 ---
 
@@ -16,7 +16,7 @@ Mi portafolio personal: una página web de una sola vista donde muestro quién s
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Herramienta | Para qué |
 |-------------|----------|
@@ -28,7 +28,7 @@ Sin frameworks ni librerías: todo está hecho a mano para tener control total d
 
 ---
 
-## 📂 Estructura
+## Estructura
 
 ```
 portafolio/
@@ -40,14 +40,14 @@ portafolio/
 
 ---
 
-## 🚀 Cómo verlo en local
+## Cómo verlo en local
 
 Abrir `index.html` en el navegador, o servirlo con un servidor local (por ejemplo Live Server de VS Code).
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Camilo Andrés García Almeida**
-Estudiante de Desarrollo de Software — Campuslands
+Técnico en Desarrollo de Software e Inteligencia Artificial — CampusLands
 [GitHub](https://github.com/CamiloGarcia079) · [LinkedIn](https://www.linkedin.com/in/camilo-garcia-7570693b7/)
