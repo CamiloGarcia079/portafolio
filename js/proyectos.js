@@ -7,6 +7,26 @@
  */
 const PROYECTOS = [
   {
+    id: 'f1',
+    destacado: true,
+    titulo: 'Fórmula 1 en Java',
+    etiqueta: 'Java · Concurrencia · Simulación',
+    categorias: ['backend'],
+    resumen: 'Simulador de carreras de escritorio: cada piloto corre en su propio hilo, con clima dinámico, consumo de combustible, desgaste de neumáticos y pit stops.',
+    metrica: '20 pilotos · 10 equipos · 7 circuitos · un hilo por piloto',
+    rol: 'En pareja con Daniel Osorio.',
+    problema: 'Simular una carrera donde muchos autos avanzan al mismo tiempo, cada uno con su ritmo, sin que el programa se trabe ni los datos se mezclen.',
+    hice: [
+      'Un hilo (HiloCarrera) por piloto; un CyclicBarrier sincroniza a todos al cerrar cada vuelta.',
+      'El clima cambia durante la carrera (seco, nublado, lluvioso, extremo) y multiplica el tiempo de vuelta.',
+      'Combustible y neumáticos se gastan; cuando llegan al límite el auto entra a boxes.',
+      'CRUD de pilotos, equipos, vehículos y circuitos, podio y clasificación en tiempo real con Swing.',
+      'Historial de carreras guardado con SQLite y Gson.'
+    ],
+    stack: ['Java 21', 'Swing', 'Threads', 'CyclicBarrier', 'SQLite', 'Gson'],
+    repo: 'https://github.com/santiagoosorio0708e-wq/Formula1-java'
+  },
+  {
     id: 'vitalroute',
     titulo: 'VitalRoute',
     etiqueta: 'Agente IA · Tiempo real',
@@ -147,38 +167,40 @@ const PROYECTOS = [
 ];
 
 /* Tecnologías y en qué proyectos se usaron (sección Stack) */
+/* Tecnologías, en qué proyectos se usaron y su logo (ver js/logos.js) */
 const STACK = [
-  { grupo: 'Backend', items: [
-    ['Java', 'MindConnect, Renta de Herramientas, Gestor de tareas'],
-    ['Spring Boot', 'MindConnect, Renta de Herramientas'],
-    ['Spring Security · JWT', 'MindConnect, Renta de Herramientas'],
-    ['Node.js · Express', 'VitalRoute, Aduana-Copilot'],
-    ['Python', 'Analizador de CVs, Tribuna Global, Aduana-Copilot']
+  { grupo: 'Lenguajes', items: [
+    ['Java', 'Fórmula 1, MindConnect, Renta de Herramientas, Gestor de tareas', 'Openjdk'],
+    ['Python', 'Analizador de CVs, Tribuna Global, Aduana-Copilot', 'Python'],
+    ['TypeScript', 'VitalRoute, Aduana-Copilot', 'Typescript'],
+    ['JavaScript', 'Banco ACME, DeliveryBot, Renta de Herramientas, este portafolio', 'Javascript'],
+    ['SQL', 'MindConnect, Renta, Plataforma SST, Campus Pizza, VitalRoute', 'db']
+  ]},
+  { grupo: 'Frameworks', items: [
+    ['Spring Boot', 'MindConnect, Renta de Herramientas', 'Springboot'],
+    ['Spring Security · JWT', 'MindConnect, Renta de Herramientas', 'Springsecurity'],
+    ['Express', 'VitalRoute, Aduana-Copilot', 'Express'],
+    ['React', 'VitalRoute, Aduana-Copilot', 'React'],
+    ['Streamlit', 'Analizador de CVs, Tribuna Global', 'Streamlit']
   ]},
   { grupo: 'Automatización e IA', items: [
-    ['n8n', 'DeliveryBot'],
-    ['Telegram Bot API', 'DeliveryBot'],
-    ['LangChain', 'Analizador de CVs, Tribuna Global'],
-    ['Gemini', 'Analizador de CVs, Tribuna Global, GUARDIAN'],
-    ['Agentes con tools', 'VitalRoute, Aduana-Copilot']
-  ]},
-  { grupo: 'Frontend', items: [
-    ['JavaScript', 'Banco ACME, Renta de Herramientas, este portafolio'],
-    ['TypeScript', 'VitalRoute, Aduana-Copilot'],
-    ['React', 'VitalRoute, Aduana-Copilot'],
-    ['HTML · CSS', 'Banco ACME, este portafolio, 15 páginas']
+    ['n8n', 'DeliveryBot', 'N8n'],
+    ['Telegram Bot API', 'DeliveryBot', 'Telegram'],
+    ['LangChain', 'Analizador de CVs, Tribuna Global', 'Langchain'],
+    ['Gemini', 'Analizador de CVs, Tribuna Global, GUARDIAN', 'Googlegemini'],
+    ['Pydantic', 'Analizador de CVs', 'Pydantic']
   ]},
   { grupo: 'Datos', items: [
-    ['MySQL', 'Renta de Herramientas, VitalRoute, Campus Pizza'],
-    ['PostgreSQL', 'MindConnect, Plataforma SST'],
-    ['Flyway', 'MindConnect'],
-    ['Google Sheets', 'DeliveryBot']
+    ['MySQL', 'Renta de Herramientas, VitalRoute, Campus Pizza', 'Mysql'],
+    ['PostgreSQL', 'MindConnect, Plataforma SST', 'Postgresql'],
+    ['Flyway', 'MindConnect', 'Flyway'],
+    ['Google Sheets', 'DeliveryBot', 'Googlesheets']
   ]},
   { grupo: 'Calidad y entrega', items: [
-    ['JUnit 5', 'MindConnect, Renta de Herramientas'],
-    ['pytest', 'Analizador de CVs, Tribuna Global, Aduana-Copilot'],
-    ['Docker', 'Renta de Herramientas, VitalRoute, Analizador de CVs'],
-    ['Postman · Swagger', 'Renta de Herramientas, VitalRoute'],
-    ['Git · GitHub', 'todos']
+    ['JUnit 5', 'MindConnect, Renta de Herramientas', 'Junit5'],
+    ['pytest', 'Analizador de CVs, Tribuna Global, Aduana-Copilot', 'Pytest'],
+    ['Docker', 'Renta de Herramientas, VitalRoute, Analizador de CVs', 'Docker'],
+    ['Postman', 'Renta de Herramientas, VitalRoute', 'Postman'],
+    ['Git · GitHub', 'todos', 'Github']
   ]}
 ];

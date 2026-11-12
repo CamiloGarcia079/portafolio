@@ -180,18 +180,21 @@ function iniciarFlujo() {
 /* ---------- Proyectos: tarjetas, filtros y ficha ---------- */
 function crearTarjeta(p, i) {
   const art = document.createElement('article');
-  art.className = 'card reveal';
+  art.className = 'card reveal' + (p.destacado ? ' card--wide' : '');
   art.dataset.categorias = p.categorias.join(' ');
   art.innerHTML = `
+    <div class="demo${p.destacado ? ' demo--wide' : ''}" data-demo="${p.id}" aria-hidden="true"></div>
+    <div class="card__body">
     <div class="card__top"><span class="card__tag">${p.etiqueta}</span><span class="card__num">${String(i + 1).padStart(2, '0')}</span></div>
     <h3>${p.titulo}</h3>
     <p>${p.resumen}</p>
     ${p.rol ? `<p class="card__role">${p.rol}</p>` : ''}
     <p class="card__metric">${p.metrica}</p>
-    <div class="card__chips">${p.stack.slice(0, 5).map((s) => `<span class="tag">${s}</span>`).join('')}</div>
+    <div class="card__chips">${p.stack.slice(0, p.destacado ? 6 : 5).map((s) => `<span class="tag">${s}</span>`).join('')}</div>
     <div class="card__actions">
       <button class="card__btn" type="button" data-id="${p.id}">Ver detalle <span>&rarr;</span></button>
       <a class="card__btn" href="${p.repo}" target="_blank" rel="noopener">Repositorio <span>&nearr;</span></a>
+    </div>
     </div>`;
   // Brillo que sigue al cursor
   art.addEventListener('pointermove', (ev) => {
@@ -239,6 +242,32 @@ function iniciarProyectos() {
   modal.addEventListener('click', (ev) => { if (ev.target === modal) modal.close(); });
 }
 
+/* ---------- Demostraciones de los proyectos ----------
+ * Se crean la primera vez que la tarjeta entra en pantalla
+ * y se pausan cuando sale, para no gastar recursos.
+ */
+function iniciarDemos() {
+  const activas = new Map();
+  const obs = new IntersectionObserver((entradas) => {
+    entradas.forEach(({ target, isIntersecting }) => {
+      let demo = activas.get(target);
+      if (isIntersecting) {
+        if (!demo) {
+          const crear = DEMOS[target.dataset.demo];
+          if (!crear) return;
+          demo = crear(target);
+          activas.set(target, demo);
+        }
+        demo.detener();
+        demo.iniciar();
+      } else if (demo) {
+        demo.detener();
+      }
+    });
+  }, { threshold: 0.25 });
+  $$('.demo').forEach((d) => obs.observe(d));
+}
+
 /* ---------- Stack: al tocar una tecnología dice dónde se usó ---------- */
 function iniciarStack() {
   const grid = $('#stack-grid');
@@ -247,13 +276,17 @@ function iniciarStack() {
     const fila = document.createElement('div');
     fila.className = 'stack__row reveal';
     fila.innerHTML = `<h3>${g.grupo}</h3><div class="stack__items">${
-      g.items.map(([nombre, proyectos]) => `<button class="tech" type="button" data-donde="${proyectos}">${nombre}</button>`).join('')
+      g.items.map(([nombre, proyectos, logo]) => {
+        const l = LOGOS[logo];
+        const icono = l ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${l.d}" fill="${l.c}"/></svg>` : '';
+        return `<button class="tech" type="button" data-donde="${proyectos}">${icono}<span>${nombre}</span></button>`;
+      }).join('')
     }</div>`;
     grid.append(fila);
   });
   const mostrar = (btn) => {
     $$('.tech', grid).forEach((t) => t.classList.toggle('is-on', t === btn));
-    donde.innerHTML = `${btn.textContent} &rarr; <b>${btn.dataset.donde}</b>`;
+    donde.innerHTML = `${btn.textContent.trim()} &rarr; <b>${btn.dataset.donde}</b>`;
   };
   grid.addEventListener('pointerover', (ev) => { const b = ev.target.closest('.tech'); if (b) mostrar(b); });
   grid.addEventListener('click', (ev) => { const b = ev.target.closest('.tech'); if (b) mostrar(b); });
@@ -284,5 +317,6 @@ iniciarNavegacion();
 iniciarProyectos();   // antes de las apariciones, para que las tarjetas también se animen
 iniciarStack();
 iniciarApariciones();
+iniciarDemos();
 iniciarContadores();
 iniciarFlujo();
