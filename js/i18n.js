@@ -7,7 +7,7 @@
 const EN = {
   'skip': 'Skip to content',
   'nav.sobre': 'About', 'nav.habilidades': 'Skills', 'nav.proyectos': 'Projects',
-  'nav.stack': 'Technologies', 'nav.trayectoria': 'Journey', 'nav.contacto': 'Contact',
+  'nav.stack': 'Languages', 'nav.trayectoria': 'Education', 'nav.contacto': 'Contact',
   'aria.tema': 'Switch light or dark theme',
 
   'hero.status': 'Professional internship at Globant starting December 2026',
@@ -42,21 +42,20 @@ const EN = {
 
   'proy.t': 'Featured projects',
   'proy.intro': 'Each project has a simulation so you can see how it works, even if you are not technical.',
-  'proy.otros': 'Other projects',
-
-  'stack.t': 'Technologies',
-  'stack.intro': 'The tools I build with, explained in simple words. Tap one to see which project I used it in.',
+  
+  'stack.t': 'Languages and technologies',
+  'stack.intro': 'The languages I master and the tools I build with. Tap one to see which project I used it in.',
   'stack.sel': 'Select a technology.',
 
-  'tray.t': 'Journey',
-  'tray.1f': 'Next · Dec 2026', 'tray.1t': 'Professional internship · Globant',
-  'tray.1d': 'Start of my professional practice as a developer at a global technology company.',
-  'tray.2t': 'Software Development and AI Technician · CampusLands',
+  'tray.t': 'Education and experience',
+  'tray.1f': 'From December 2026', 'tray.1t': 'Professional internship · Globant',
+  'tray.1d': 'Professional internship as a developer at a global technology company.',
+  'tray.2t': 'Software Development and Artificial Intelligence Technician · CampusLands',
   'tray.2d': 'One year of intensive training: programming in Java, Python, JavaScript and TypeScript, databases, automation with n8n and applied artificial intelligence.',
   'tray.3f': 'Agent Challenge 2026', 'tray.3t': 'Platica.mx with CampusLands · Aduana-Copilot',
   'tray.3d': 'Pair challenge: an AI assistant that calculates how much it costs to import medicines. I built the assistant and the interface.',
-  'tray.4t': '"Visual Agents" · GUARDIAN',
-  'tray.4d': 'In-person AI hackathon: a road safety system using computer vision. My role was making sure the team’s parts worked together and presenting the final result.',
+  'tray.4t': '“Visual Agents” · GUARDIAN',
+  'tray.4d': 'In-person AI hackathon: a road safety system using computer vision. I coordinated how the team’s parts worked together and presented the final result.',
 
   'cont.t1': 'Let’s talk about what', 'cont.t2': 'can be automated.',
   'cont.p': 'Write to me right here and the message reaches my inbox. If you prefer, compose the email from your own account.',

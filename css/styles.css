@@ -108,11 +108,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   border-color: var(--line); padding-block: 10px;
 }
 .nav__brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; }
-.nav__logo {
-  width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
-  font: 700 14px var(--display); color: #10131a;
-  background: linear-gradient(135deg, var(--gold), var(--teal));
-}
 .nav__links { display: flex; gap: 4px; }
 .nav__links a {
   text-decoration: none; font-size: 14px; color: var(--muted);
@@ -667,19 +662,127 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .contact__title { font-size: clamp(28px, 3.3vw, 42px); }
 .stats strong { color: var(--ink); }
 
-/* Logo: una C de tres tramos (los pasos de un proceso) que termina en un nodo */
-.logo { width: 38px; height: 38px; flex: none; }
-.logo__fondo { fill: #0a0e16; stroke: rgba(255,255,255,.14); stroke-width: 1.5; }
-.logo__t { fill: none; stroke-width: 7; stroke-linecap: round; transition: opacity .3s; }
-.logo__t1 { stroke: #e8b04b; } .logo__t2 { stroke: #c5c785; } .logo__t3 { stroke: #5eead4; }
-.logo__nodo { fill: #0a0e16; stroke: #e8b04b; stroke-width: 2.8; transform-box: fill-box; transform-origin: center; }
-/* Al cargar y al pasar el mouse, los tramos se encienden en orden como un flujo */
-@keyframes paso { 0%, 100% { opacity: 1; } 40% { opacity: .25; } }
-@keyframes nodo { 50% { transform: scale(1.25); } }
-.logo .logo__t { animation: paso 1.2s ease both; }
-.logo .logo__t2 { animation-delay: .15s; } .logo .logo__t3 { animation-delay: .3s; }
-.logo .logo__nodo { animation: nodo .6s ease .45s both; }
-.nav__brand:hover .logo__t { animation: paso 1s ease; }
-.nav__brand:hover .logo__t2 { animation-delay: .15s; }
-.nav__brand:hover .logo__t3 { animation-delay: .3s; }
-.nav__brand:hover .logo__nodo { animation: nodo .6s ease .45s; }
+/* =========================================================
+   Estilo formal y minimalista (capa final: manda sobre lo anterior)
+   Un solo acento dorado, fondos limpios y logos en un tono neutro.
+   ========================================================= */
+:root {
+  --bg: #0b0f16; --bg-2: #0e131c; --panel: #11171f; --panel-2: #151c26;
+  --line: rgba(255, 255, 255, .07); --line-2: rgba(255, 255, 255, .12);
+  --ink: #eef1f5; --muted: #8e98a7; --gold: #c9a04f; --teal: #b4c0cf; --ok: #6fbf8a;
+  --shadow: 0 24px 50px -30px rgba(0, 0, 0, .8);
+}
+[data-theme="light"] {
+  --bg: #f7f5f0; --bg-2: #f1eee7; --panel: #ffffff; --panel-2: #faf8f4;
+  --line: rgba(17, 22, 30, .08); --line-2: rgba(17, 22, 30, .14);
+  --ink: #11161e; --muted: #5c6574; --gold: #9a7429; --teal: #3f4c5e; --ok: #2f8a52;
+  --shadow: 0 24px 50px -32px rgba(17, 22, 30, .28);
+}
+
+/* Sin degradados de colores ni fondos punteados */
+.grad { background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--gold); }
+.hero__bg { background: radial-gradient(900px 500px at 75% 20%, color-mix(in srgb, var(--gold) 6%, transparent), transparent 70%); }
+.progress { background: var(--gold); height: 2px; }
+.demo { background: var(--bg-2); }
+.contact { background: var(--panel); }
+.section__line { background: var(--line-2); }
+.pillar::before { background: var(--gold); }
+.scroll-hint { display: none; }
+
+/* Botones sobrios */
+.btn--solid { background: var(--ink); color: var(--bg); box-shadow: none; }
+.btn--solid:hover { background: var(--gold); color: #11161e; }
+.btn--ghost { background: transparent; }
+.btn--ghost:hover { border-color: var(--ink); }
+.btn:hover { transform: none; }
+
+/* Portada */
+.status { color: var(--muted); border-color: var(--line-2); background: transparent; }
+.status__dot { background: var(--gold); }
+.status__dot::after { display: none; }
+.hero__title { letter-spacing: -.035em; }
+.stats strong { font-weight: 600; }
+.flow { box-shadow: var(--shadow); backdrop-filter: none; }
+.flow__dots i, .flow__dots i:nth-child(n) { background: var(--line-2); }
+.edge.is-active { stroke: var(--gold); }
+.edge.is-done { stroke: var(--teal); stroke-opacity: .6; }
+.node.is-done rect { stroke: var(--teal); }
+.node.is-done .node__led { fill: var(--teal); }
+.flow__state.is-done { color: var(--ink); border-color: var(--line-2); }
+.flow__log b { color: var(--ink); }
+.flow__log .ok { color: var(--gold); }
+.packet { fill: var(--gold); filter: none; }
+
+/* Logo: C geométrica con un punto dorado (estático) */
+.logo { width: 36px; height: 36px; }
+.logo__fondo { fill: var(--panel); stroke: var(--line-2); stroke-width: 1.5; }
+.logo__c { fill: var(--ink); }
+.logo__punto { fill: var(--gold); }
+.nav__brand { font-weight: 600; letter-spacing: -.01em; }
+
+/* Lenguajes principales */
+.langs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 18px; }
+.lang-card {
+  display: grid; justify-items: start; gap: 6px; text-align: left; padding: 22px 20px;
+  border-radius: 14px; border: 1px solid var(--line); background: var(--panel); font: inherit; color: var(--ink);
+  transition: border-color .25s, transform .25s;
+}
+.lang-card svg { width: 34px; height: 34px; margin-bottom: 10px; }
+.lang-card svg path { fill: var(--ink); transition: fill .25s; }
+.lang-card__n { font: 600 18px var(--display); }
+.lang-card__uso { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.lang-card:hover, .lang-card.is-on { border-color: var(--gold); transform: translateY(-2px); }
+.lang-card:hover svg path, .lang-card.is-on svg path { fill: var(--marca); }
+
+/* Resto de tecnologías: logos neutros, color de marca al pasar */
+.tech { background: transparent; }
+.tech svg path { fill: var(--muted); transition: fill .2s; }
+.tech:hover svg path, .tech.is-on svg path { fill: var(--marca); }
+.tech:hover, .tech.is-on { color: var(--ink); border-color: var(--gold); background: transparent; }
+.stack__row h3::before, .stack__row:nth-child(even) h3::before { background: var(--gold); }
+.stack__where b { color: var(--gold); }
+
+/* Habilidades */
+.skill__icon { background: transparent; border: 1px solid var(--line-2); }
+.skill__ev span { color: var(--gold); }
+.skill:hover { border-color: var(--line-2); transform: none; }
+.pillar__icon { background: transparent; border: 1px solid var(--line-2); }
+.pillar__icon svg { stroke: var(--ink); }
+.pillar:hover { transform: none; }
+
+/* Proyectos */
+.card:hover { transform: none; }
+.card::after { display: none; }
+.card__badge { background: transparent; color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); }
+.card .card__metric { color: var(--muted); }
+.tag { background: transparent; }
+.tg__yo { background: var(--ink); color: var(--bg); }
+.tg__top i { background: var(--line-2); }
+.tg__btns span { background: transparent; border: 1px solid var(--line-2); color: var(--muted); }
+.vr__ruta { stroke: var(--gold); }
+.vr__amb { fill: var(--ink); filter: none; }
+.rt__dias i.ok { background: color-mix(in srgb, var(--teal) 45%, transparent); border-color: var(--teal); }
+.rt__msg { color: var(--muted); }
+
+/* Formación y experiencia */
+.edu { display: grid; border-top: 1px solid var(--line); }
+.edu__item { display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.edu__logo { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; border: 1px solid var(--line-2); background: var(--panel); }
+.edu__logo--icono { display: grid; place-items: center; }
+.edu__logo--icono svg { width: 26px; height: 26px; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.edu__fecha { font-size: 12.5px; color: var(--gold); }
+.edu h3 { font: 600 20px var(--display); margin: 4px 0 6px; }
+.edu p { color: var(--muted); max-width: 760px; }
+
+/* Contacto */
+.contact__address { border-bottom-color: var(--gold); }
+.form__gmail { color: var(--ink); }
+
+@media (max-width: 1100px) { .langs { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) {
+  .langs { grid-template-columns: repeat(2, 1fr); }
+  .edu__item { grid-template-columns: 48px 1fr; gap: 16px; }
+  .edu__logo { width: 48px; height: 48px; }
+}
+.lang-card { align-items: start; align-content: start; }
+.edu__logo[src*="campuslands"] { background: #000; }

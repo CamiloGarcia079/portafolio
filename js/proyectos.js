@@ -133,20 +133,13 @@ const PROYECTOS = [
   }
 ];
 
-/* ---------- Otros proyectos ---------- */
-const OTROS = [
-  { url: 'https://github.com/CamiloGarcia079/trabajo-bound-context-con-spring-security', t: { es: 'MindConnect API', en: 'MindConnect API' },
-    d: { es: 'Sistema de salud mental: 52 tablas y más de 600 pruebas', en: 'Mental health system: 52 tables and 600+ tests' }, s: 'Java · Spring Boot · PostgreSQL' },
-  { url: 'https://github.com/CamiloGarcia079/Aduana-Copilot-CamiloGarcia-DanielOsorio', t: { es: 'Aduana-Copilot', en: 'Aduana-Copilot' },
-    d: { es: 'Asistente con IA que cotiza importaciones de medicamentos', en: 'AI assistant that quotes medicine imports' }, s: 'TypeScript · React · Python' },
-  { url: 'https://github.com/CamiloGarcia079/Hojas-de-vida-Chatbot---IA---Camilo-', t: { es: 'Analizador de CVs', en: 'Résumé Analyzer' },
-    d: { es: 'La IA lee una hoja de vida y dice qué tanto encaja con un puesto', en: 'AI reads a résumé and scores how well it fits a job' }, s: 'Python · LangChain · Gemini' },
-  { url: 'https://github.com/CamiloGarcia079/CAMILO-BANCO-EVALUACION', t: { es: 'Banco ACME', en: 'ACME Bank' },
-    d: { es: 'Banca web con transferencias, pagos y clave dinámica', en: 'Web banking with transfers, payments and a dynamic key' }, s: 'JavaScript · HTML · CSS' },
-  { url: 'https://github.com/CamiloGarcia079/Tribuna-Global-Camilo-Garcia-A', t: { es: 'Tribuna Global', en: 'Tribuna Global' },
-    d: { es: 'Chatbot que clasifica opiniones por sentimiento', en: 'Chatbot that classifies opinions by sentiment' }, s: 'Python · LangChain' },
-  { url: 'https://github.com/CamiloGarcia079/PROYECTO---EVALUACION-Camilo-Garc-a-', t: { es: 'Plataforma SST y PESV', en: 'Workplace Safety Platform' },
-    d: { es: 'Base de datos para varias empresas con reglas automáticas', en: 'Multi-company database with automatic rules' }, s: 'PostgreSQL' }
+/* ---------- Lenguajes que domino (tarjetas grandes) ---------- */
+const LENGUAJES = [
+  { n: 'Java', logo: 'Openjdk', uso: { es: 'APIs y aplicaciones de escritorio', en: 'APIs and desktop apps' }, donde: 'Fórmula 1, Renta de Herramientas, MindConnect' },
+  { n: 'Python', logo: 'Python', uso: { es: 'Inteligencia artificial', en: 'Artificial intelligence' }, donde: 'Analizador de CVs, Tribuna Global, Aduana-Copilot' },
+  { n: 'TypeScript', logo: 'Typescript', uso: { es: 'Servidores y paneles en tiempo real', en: 'Servers and real-time dashboards' }, donde: 'VitalRoute, Aduana-Copilot' },
+  { n: 'JavaScript', logo: 'Javascript', uso: { es: 'Web y automatización', en: 'Web and automation' }, donde: 'DeliveryBot, Banco ACME, este portafolio' },
+  { n: 'SQL', logo: 'db', uso: { es: 'Bases de datos', en: 'Databases' }, donde: 'Renta de Herramientas, VitalRoute, MindConnect' }
 ];
 
 /* ---------- Habilidades blandas, cada una con evidencia real ---------- */
@@ -179,14 +172,6 @@ const HABILIDADES = [
 
 /* ---------- Tecnologías: nombre, proyectos donde se usó y logo (js/logos.js) ---------- */
 const STACK = [
-  { grupo: { es: 'Lenguajes', en: 'Languages' },
-    simple: { es: 'Los idiomas con los que le doy instrucciones a la computadora.', en: 'The languages I use to give the computer instructions.' },
-    items: [
-      ['Java', 'Fórmula 1, Renta de Herramientas, MindConnect', 'Openjdk'],
-      ['Python', 'Analizador de CVs, Tribuna Global, Aduana-Copilot', 'Python'],
-      ['TypeScript', 'VitalRoute, Aduana-Copilot', 'Typescript'],
-      ['JavaScript', 'DeliveryBot, Banco ACME, este portafolio', 'Javascript'],
-      ['SQL', 'Renta de Herramientas, VitalRoute, MindConnect', 'db']] },
   { grupo: { es: 'Frameworks', en: 'Frameworks' },
     simple: { es: 'Herramientas que aceleran la construcción de aplicaciones.', en: 'Tools that speed up building applications.' },
     items: [

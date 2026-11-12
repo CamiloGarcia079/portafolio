@@ -238,8 +238,6 @@ function pintarProyectos() {
   PROYECTOS.forEach((p, i) => lista.append(crearTarjeta(p, i)));
   $$('.demo', lista).forEach((d) => observadorDemos.observe(d));
 
-  $('#lista-otros').innerHTML = OTROS.map((o) => `
-    <li><a href="${o.url}" target="_blank" rel="noopener"><strong>${L(o.t)}</strong><span>${L(o.d)}</span><em class="mono">${o.s}</em></a></li>`).join('');
 }
 
 function iniciarFicha() {
@@ -275,26 +273,37 @@ function pintarHabilidades() {
 }
 
 /* ---------- Tecnologías con logo, explicación simple y dónde se usaron ---------- */
+function icono(logo) {
+  const l = LOGOS[logo];
+  return l ? `<svg viewBox="0 0 24 24" aria-hidden="true" style="--marca:${l.c}"><path d="${l.d}"/></svg>` : '';
+}
+
 function pintarStack() {
-  const grid = $('#stack-grid');
-  grid.innerHTML = STACK.map((g) => `
+  // Lenguajes principales: tarjetas grandes con logo
+  $('#lenguajes').innerHTML = LENGUAJES.map((l) => `
+    <button class="lang-card tech reveal" type="button" data-n="${l.n}" data-donde="${l.donde}">
+      ${icono(l.logo)}
+      <span class="lang-card__n">${l.n}</span>
+      <span class="lang-card__uso">${L(l.uso)}</span>
+    </button>`).join('');
+
+  // Resto de tecnologías por grupo, con una explicación simple
+  $('#stack-grid').innerHTML = STACK.map((g) => `
     <div class="stack__row reveal">
       <div class="stack__grupo"><h3>${L(g.grupo)}</h3><p>${L(g.simple)}</p></div>
       <div class="stack__items">${g.items.map(([nombre, proyectos, logo]) => {
-        const l = LOGOS[logo];
-        const icono = l ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${l.d}" fill="${l.c}"/></svg>` : '';
         const donde = proyectos === '*' ? (idioma() === 'en' ? 'all my projects' : 'todos mis proyectos') : proyectos;
-        return `<button class="tech" type="button" data-donde="${donde}">${icono}<span>${nombre}</span></button>`;
+        return `<button class="tech" type="button" data-n="${nombre}" data-donde="${donde}">${icono(logo)}<span>${nombre}</span></button>`;
       }).join('')}</div>
     </div>`).join('');
 }
 
 function iniciarStack() {
-  const grid = $('#stack-grid');
+  const grid = $('#stack');
   const donde = $('#stack-donde');
   const mostrar = (btn) => {
     $$('.tech', grid).forEach((t) => t.classList.toggle('is-on', t === btn));
-    donde.innerHTML = `${btn.textContent.trim()} &rarr; <b>${btn.dataset.donde}</b>`;
+    donde.innerHTML = `${btn.dataset.n} &rarr; <b>${btn.dataset.donde}</b>`;
   };
   ['pointerover', 'click', 'focusin'].forEach((tipo) => grid.addEventListener(tipo, (ev) => {
     const b = ev.target.closest('.tech');
@@ -308,7 +317,7 @@ function pintarContenido() {
   pintarProyectos();
   pintarStack();
   // Lo nuevo aparece ya visible si su sección está en pantalla
-  $$('#lista-habilidades .reveal, #lista-proyectos .reveal, #stack-grid .reveal').forEach((el) => {
+  $$('#lista-habilidades .reveal, #lista-proyectos .reveal, #stack .reveal').forEach((el) => {
     const r = el.getBoundingClientRect();
     if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in');
   });

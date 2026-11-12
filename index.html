@@ -37,20 +37,18 @@
   <header class="nav" id="nav">
     <a href="#inicio" class="nav__brand" aria-label="Inicio">
       <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="16" class="logo__fondo"/>
-        <path class="logo__t logo__t1" d="M39.89 15.82 A18 18 0 0 0 24.11 15.82"/>
-        <path class="logo__t logo__t2" d="M19.05 19.50 A18 18 0 0 0 19.05 44.50"/>
-        <path class="logo__t logo__t3" d="M24.11 48.18 A18 18 0 0 0 39.89 48.18"/>
-        <circle class="logo__nodo" cx="45.79" cy="20.43" r="5.2"/>
+        <rect width="64" height="64" rx="14" class="logo__fondo"/>
+        <path class="logo__c" d="M46.97 20.30 A19 19 0 1 0 46.97 43.70 L41.46 39.39 A12 12 0 1 1 41.46 24.61 Z"/>
+        <rect class="logo__punto" x="43" y="34" width="7" height="7"/>
       </svg>
       <span class="nav__name">Camilo García</span>
     </a>
     <nav class="nav__links" id="menu" aria-label="Secciones">
       <a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a>
+      <a href="#stack" data-i18n="nav.stack">Lenguajes</a>
       <a href="#habilidades" data-i18n="nav.habilidades">Habilidades</a>
       <a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a>
-      <a href="#stack" data-i18n="nav.stack">Tecnologías</a>
-      <a href="#trayectoria" data-i18n="nav.trayectoria">Trayectoria</a>
+      <a href="#trayectoria" data-i18n="nav.trayectoria">Formación</a>
       <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
     </nav>
     <div class="nav__actions">
@@ -155,9 +153,18 @@
       </div>
     </section>
 
+    <!-- ============ LENGUAJES Y TECNOLOGÍAS ============ -->
+    <section class="section wrap" id="stack">
+      <header class="section__head reveal"><span class="section__num">02</span><h2 data-i18n="stack.t">Lenguajes y tecnologías</h2><span class="section__line"></span></header>
+      <p class="section__intro reveal" data-i18n="stack.intro">Los lenguajes que domino y las herramientas con las que construyo. Toca una para ver en qué proyecto la usé.</p>
+      <div class="langs" id="lenguajes"></div>
+      <div class="stack" id="stack-grid"></div>
+      <p class="stack__where mono reveal" id="stack-donde" aria-live="polite" data-i18n="stack.sel">Selecciona una tecnología.</p>
+    </section>
+
     <!-- ============ HABILIDADES ============ -->
     <section class="section wrap" id="habilidades">
-      <header class="section__head reveal"><span class="section__num">02</span><h2 data-i18n="hab.t">Habilidades</h2><span class="section__line"></span></header>
+      <header class="section__head reveal"><span class="section__num">03</span><h2 data-i18n="hab.t">Habilidades</h2><span class="section__line"></span></header>
       <p class="section__intro reveal" data-i18n="hab.intro">Lo que aporto a un equipo además del código. Cada habilidad viene con un ejemplo real.</p>
       <div class="skills" id="lista-habilidades"></div>
 
@@ -183,47 +190,48 @@
 
     <!-- ============ PROYECTOS ============ -->
     <section class="section wrap" id="proyectos">
-      <header class="section__head reveal"><span class="section__num">03</span><h2 data-i18n="proy.t">Proyectos destacados</h2><span class="section__line"></span></header>
+      <header class="section__head reveal"><span class="section__num">04</span><h2 data-i18n="proy.t">Proyectos destacados</h2><span class="section__line"></span></header>
       <p class="section__intro reveal" data-i18n="proy.intro">Cada proyecto tiene una simulación para que veas cómo funciona, aunque no seas del área técnica.</p>
       <div class="projects" id="lista-proyectos"></div>
-
-      <h3 class="subhead reveal" data-i18n="proy.otros">Otros proyectos</h3>
-      <ul class="others reveal" id="lista-otros"></ul>
     </section>
 
-    <!-- ============ TECNOLOGÍAS ============ -->
-    <section class="section wrap" id="stack">
-      <header class="section__head reveal"><span class="section__num">04</span><h2 data-i18n="stack.t">Tecnologías</h2><span class="section__line"></span></header>
-      <p class="section__intro reveal" data-i18n="stack.intro">Las herramientas con las que construyo, explicadas en palabras simples. Toca una para ver en qué proyecto la usé.</p>
-      <div class="stack" id="stack-grid"></div>
-      <p class="stack__where mono reveal" id="stack-donde" aria-live="polite" data-i18n="stack.sel">Selecciona una tecnología.</p>
-    </section>
-
-    <!-- ============ TRAYECTORIA ============ -->
+    <!-- ============ FORMACIÓN Y EXPERIENCIA ============ -->
     <section class="section wrap" id="trayectoria">
-      <header class="section__head reveal"><span class="section__num">05</span><h2 data-i18n="tray.t">Trayectoria</h2><span class="section__line"></span></header>
-      <ol class="timeline">
-        <li class="reveal">
-          <span class="timeline__date mono" data-i18n="tray.1f">Próximo · Dic 2026</span>
-          <h3 data-i18n="tray.1t">Etapa productiva · Globant</h3>
-          <p data-i18n="tray.1d">Inicio de mi práctica profesional como desarrollador en una empresa global de tecnología.</p>
-        </li>
-        <li class="reveal">
-          <span class="timeline__date mono">2026</span>
-          <h3 data-i18n="tray.2t">Técnico en Desarrollo de Software e IA · CampusLands</h3>
-          <p data-i18n="tray.2d">Un año de formación intensiva: programación en Java, Python, JavaScript y TypeScript, bases de datos, automatización con n8n e inteligencia artificial aplicada.</p>
-        </li>
-        <li class="reveal">
-          <span class="timeline__date mono" data-i18n="tray.3f">Reto Agente 2026</span>
-          <h3 data-i18n="tray.3t">Platica.mx con CampusLands · Aduana-Copilot</h3>
-          <p data-i18n="tray.3d">Reto en pareja: un asistente con IA que calcula cuánto cuesta importar medicamentos. Me encargué del asistente y de la interfaz.</p>
-        </li>
-        <li class="reveal">
-          <span class="timeline__date mono">Hackathon</span>
-          <h3 data-i18n="tray.4t">"Visual Agents" · GUARDIAN</h3>
-          <p data-i18n="tray.4d">Hackathon presencial de IA: un sistema de seguridad vial con visión por computadora. Mi rol fue coordinar que las partes del equipo funcionaran juntas y presentar el resultado final.</p>
-        </li>
-      </ol>
+      <header class="section__head reveal"><span class="section__num">05</span><h2 data-i18n="tray.t">Formación y experiencia</h2><span class="section__line"></span></header>
+      <div class="edu">
+        <article class="edu__item reveal">
+          <img class="edu__logo" src="assets/globant.jpg" alt="Globant" width="64" height="64" loading="lazy">
+          <div>
+            <span class="edu__fecha mono" data-i18n="tray.1f">Desde diciembre de 2026</span>
+            <h3 data-i18n="tray.1t">Etapa productiva · Globant</h3>
+            <p data-i18n="tray.1d">Práctica profesional como desarrollador en una empresa global de tecnología.</p>
+          </div>
+        </article>
+        <article class="edu__item reveal">
+          <img class="edu__logo" src="assets/campuslands.png" alt="CampusLands" width="64" height="64" loading="lazy">
+          <div>
+            <span class="edu__fecha mono">2026</span>
+            <h3 data-i18n="tray.2t">Técnico en Desarrollo de Software e Inteligencia Artificial · CampusLands</h3>
+            <p data-i18n="tray.2d">Un año de formación intensiva: Java y Spring Boot, Python, JavaScript y TypeScript, bases de datos MySQL y PostgreSQL, automatización con n8n e inteligencia artificial aplicada.</p>
+          </div>
+        </article>
+        <article class="edu__item reveal">
+          <span class="edu__logo edu__logo--icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span>
+          <div>
+            <span class="edu__fecha mono" data-i18n="tray.3f">Reto Agente 2026</span>
+            <h3 data-i18n="tray.3t">Platica.mx con CampusLands · Aduana-Copilot</h3>
+            <p data-i18n="tray.3d">Reto en pareja: un asistente con IA que calcula cuánto cuesta importar medicamentos. Me encargué del asistente y de la interfaz.</p>
+          </div>
+        </article>
+        <article class="edu__item reveal">
+          <span class="edu__logo edu__logo--icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span>
+          <div>
+            <span class="edu__fecha mono">Hackathon</span>
+            <h3 data-i18n="tray.4t">“Visual Agents” · GUARDIAN</h3>
+            <p data-i18n="tray.4d">Hackathon presencial de IA: un sistema de seguridad vial con visión por computadora. Coordiné que las partes del equipo funcionaran juntas y presenté el resultado final.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- ============ CONTACTO ============ -->
