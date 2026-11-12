@@ -1,202 +1,284 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Camilo García — Desarrollador de Software</title>
-  <meta name="description" content="Portafolio de Camilo Andrés García Almeida, desarrollador de software junior. Proyectos de desarrollo web, automatización y bases de datos.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camilo García · Junior Developer · Automatización, bots y web</title>
+  <meta name="description" content="Portafolio de Camilo Andrés García Almeida, Técnico en Desarrollo de Software e Inteligencia Artificial. Automatizaciones, bots, agentes de IA y desarrollo web con Java, Spring Boot, Python y TypeScript.">
+  <meta name="author" content="Camilo Andrés García Almeida">
+  <meta name="theme-color" content="#0a0e16">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Camilo García · Junior Developer">
+  <meta property="og:description" content="Automatizaciones, bots, agentes de IA y desarrollo web. Etapa productiva en Globant desde diciembre de 2026.">
+  <meta property="og:url" content="https://camilogarcia079.github.io/portafolio/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Aplica el tema guardado antes de pintar, para que no parpadee -->
+  <script>
+    try {
+      const t = localStorage.getItem('tema');
+      if (t) document.documentElement.dataset.theme = t;
+      else if (matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.dataset.theme = 'light';
+    } catch (e) {}
+  </script>
 </head>
 <body>
+  <div class="progress" aria-hidden="true"></div>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
 
-  <!-- NAV -->
-  <header class="nav" id="top">
-    <a href="#top" class="nav__brand">CG<span>.</span></a>
-    <nav class="nav__links" aria-label="Navegación principal">
+  <!-- ============ NAVEGACIÓN ============ -->
+  <header class="nav" id="nav">
+    <a href="#inicio" class="nav__brand" aria-label="Inicio">
+      <span class="nav__logo">CG</span>
+      <span class="nav__name">Camilo García</span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Secciones">
       <a href="#sobre-mi">Sobre mí</a>
-      <a href="#habilidades">Habilidades</a>
+      <a href="#enfoque">Enfoque</a>
       <a href="#proyectos">Proyectos</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#stack">Stack</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <div class="nav__actions">
+      <button class="icon-btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">
+        <svg class="i-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+        <svg class="i-luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      </button>
+      <button class="icon-btn nav__toggle" id="abrir-menu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </header>
 
-  <main>
+  <main id="contenido">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero__inner">
-        <p class="eyebrow reveal">Desarrollador de Software · Colombia</p>
-        <h1 class="hero__title reveal">Camilo<br>García</h1>
-        <p class="hero__lead reveal">Me gusta construir cosas y verlas funcionar de verdad: un bot que responde, una base de datos que entrega justo el dato que pedías, una página que hace lo que debe.</p>
-        <div class="hero__actions reveal">
-          <a href="#proyectos" class="btn btn--solid">Ver proyectos</a>
-          <a href="#contacto" class="btn btn--ghost">Contáctame</a>
-        </div>
-      </div>
-      <div class="hero__meta reveal">
-        <span class="mono">Junior · Campuslands</span>
-        <span class="mono">Automatización · Ciberseguridad</span>
-      </div>
-    </section>
-
-    <!-- SOBRE MÍ -->
-    <section class="section" id="sobre-mi">
-      <div class="section__head">
-        <span class="mono section__num">01</span>
-        <h2 class="section__title reveal">Sobre mí</h2>
-      </div>
-      <div class="about">
-        <div class="about__photo reveal">
-          <img src="assets/foto.jpg" alt="Retrato de Camilo García">
-        </div>
-        <div class="about__text reveal">
-          <p>Soy Camilo, desarrollador de software junior formado en <strong>Campuslands</strong>. Me metí en esto porque me gusta resolver problemas y, sobre todo, ver lo que construyo funcionando.</p>
-          <p>Me muevo cómodo entre el frontend y el backend, y disfruto los proyectos donde tengo que pensar cómo encajan las piezas. Últimamente lo que más me jala es la <strong>automatización, los bots y la ciberseguridad</strong>, que es hacia donde quiero seguir creciendo.</p>
-          <ul class="facts">
-            <li><span class="mono">Ubicación</span><span>Bucaramanga, Colombia</span></li>
-            <li><span class="mono">Formación</span><span>Téc. en Desarrollo de Software — Campuslands</span></li>
-            <li><span class="mono">Enfoque</span><span>Automatización · Ciberseguridad</span></li>
-            <li><span class="mono">Idiomas</span><span>Español (nativo) · Inglés (A2)</span></li>
+    <!-- ============ PORTADA ============ -->
+    <section class="hero" id="inicio">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__grid wrap">
+        <div class="hero__text">
+          <p class="status reveal"><span class="status__dot"></span>Etapa productiva en Globant desde diciembre de 2026</p>
+          <h1 class="hero__title reveal">
+            Camilo Andrés<br><span class="grad">García Almeida</span>
+          </h1>
+          <p class="hero__role reveal">Técnico en Desarrollo de Software e Inteligencia Artificial</p>
+          <p class="hero__lead reveal">
+            Junior Developer enfocado en <strong>automatizaciones</strong>, <strong>bots</strong> y <strong>desarrollo web</strong>.
+            Construyo flujos que hacen solos el trabajo repetitivo, agentes de IA que usan herramientas reales y APIs con pruebas.
+          </p>
+          <div class="hero__cta reveal">
+            <a href="#proyectos" class="btn btn--solid">Ver proyectos</a>
+            <a href="https://github.com/CamiloGarcia079/hoja-de-vida-profesional/blob/main/HojaDeVida_Profesional_CamiloGarcia.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Hoja de vida (PDF)</a>
+          </div>
+          <ul class="stats reveal" aria-label="Datos de mis proyectos">
+            <li><strong data-count="850">0</strong><span>pruebas automatizadas</span></li>
+            <li><strong data-count="8">0</strong><span>proyectos destacados</span></li>
+            <li><strong data-count="5">0</strong><span>con IA o automatización</span></li>
           </ul>
         </div>
+
+        <!-- Flujo de automatización interactivo -->
+        <figure class="flow reveal" aria-labelledby="flow-cap">
+          <div class="flow__bar">
+            <span class="flow__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="mono">workflow / pedido_nuevo.json</span>
+            <span class="flow__state mono" id="flow-estado">en espera</span>
+          </div>
+          <svg class="flow__canvas" viewBox="0 0 410 228" role="img" aria-label="Diagrama de un flujo: Telegram, Router, Google Sheets, Cocina y Cliente">
+            <defs>
+              <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0 10 5 0 10z" class="flow__arrow"/>
+              </marker>
+            </defs>
+            <path class="edge" data-edge="0" d="M110 55 H132" marker-end="url(#flecha)"/>
+            <path class="edge" data-edge="1" d="M243 55 H265" marker-end="url(#flecha)"/>
+            <path class="edge" data-edge="2" d="M300 80 V112 Q300 122 290 122 H210 Q200 122 200 132 V166" marker-end="url(#flecha)"/>
+            <path class="edge" data-edge="3" d="M350 80 V166" marker-end="url(#flecha)"/>
+
+            <g class="node" data-node="0" transform="translate(6 30)">
+              <rect width="104" height="50" rx="10"/><text x="14" y="22" class="node__t">Telegram</text><text x="14" y="38" class="node__s">trigger</text><circle class="node__led" cx="90" cy="25" r="4"/>
+            </g>
+            <g class="node" data-node="1" transform="translate(135 30)">
+              <rect width="108" height="50" rx="10"/><text x="14" y="22" class="node__t">Router</text><text x="14" y="38" class="node__s">código JS</text><circle class="node__led" cx="94" cy="25" r="4"/>
+            </g>
+            <g class="node" data-node="2" transform="translate(268 30)">
+              <rect width="136" height="50" rx="10"/><text x="14" y="22" class="node__t">Google Sheets</text><text x="14" y="38" class="node__s">guardar pedido</text><circle class="node__led" cx="122" cy="25" r="4"/>
+            </g>
+            <g class="node" data-node="3" transform="translate(140 170)">
+              <rect width="120" height="50" rx="10"/><text x="14" y="22" class="node__t">Cocina</text><text x="14" y="38" class="node__s">notificar</text><circle class="node__led" cx="106" cy="25" r="4"/>
+            </g>
+            <g class="node" data-node="4" transform="translate(284 170)">
+              <rect width="120" height="50" rx="10"/><text x="14" y="22" class="node__t">Cliente</text><text x="14" y="38" class="node__s">confirmación</text><circle class="node__led" cx="106" cy="25" r="4"/>
+            </g>
+            <circle class="packet" r="5" cx="-20" cy="-20"/>
+          </svg>
+          <ol class="flow__log mono" id="flow-log" aria-live="polite"></ol>
+          <div class="flow__foot">
+            <figcaption id="flow-cap">Simulación de un flujo como el de <a href="https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo" target="_blank" rel="noopener">DeliveryBot</a></figcaption>
+            <button class="btn btn--small" id="flow-run" type="button">Ejecutar flujo</button>
+          </div>
+        </figure>
+      </div>
+      <a href="#sobre-mi" class="scroll-hint" aria-label="Bajar a Sobre mí"><span></span></a>
+    </section>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section wrap" id="sobre-mi">
+      <header class="section__head reveal"><span class="section__num">01</span><h2>Sobre mí</h2><span class="section__line"></span></header>
+      <div class="about">
+        <div class="about__photo reveal">
+          <img src="assets/foto.jpg" alt="Retrato de Camilo García" width="420" height="560" loading="lazy">
+          <span class="about__badge mono">Bucaramanga, CO</span>
+        </div>
+        <div class="about__text">
+          <p class="about__big reveal">Si un proceso se repite, se puede automatizar. Esa idea guía casi todo lo que construyo.</p>
+          <p class="reveal">Soy Técnico en Desarrollo de Software e Inteligencia Artificial, formado durante un año intensivo en <strong>CampusLands</strong>. En ese tiempo pasé de páginas en HTML a APIs con Spring Boot y arquitectura hexagonal, bots en n8n y agentes de IA que llaman herramientas en lugar de inventar respuestas.</p>
+          <p class="reveal">En <strong>diciembre de 2026 empiezo mi etapa productiva en Globant</strong>. Me interesa trabajar donde pueda quitarle trabajo manual a la gente: bots que atienden, flujos que conectan sistemas y aplicaciones web que se puedan mantener.</p>
+          <p class="reveal">Trato de dejar cada proyecto listo para que otra persona lo ejecute: un script de arranque, pruebas automáticas y las decisiones técnicas escritas.</p>
+          <dl class="facts reveal">
+            <div><dt>Título</dt><dd>Técnico en Desarrollo de Software e IA</dd></div>
+            <div><dt>Próximo paso</dt><dd>Etapa productiva · Globant</dd></div>
+            <div><dt>Ubicación</dt><dd>Bucaramanga, Colombia</dd></div>
+            <div><dt>Idiomas</dt><dd>Español nativo · Inglés A2</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
 
-    <!-- HABILIDADES -->
-    <section class="section" id="habilidades">
-      <div class="section__head">
-        <span class="mono section__num">02</span>
-        <h2 class="section__title reveal">Habilidades</h2>
+    <!-- ============ ENFOQUE ============ -->
+    <section class="section wrap" id="enfoque">
+      <header class="section__head reveal"><span class="section__num">02</span><h2>En qué me enfoco</h2><span class="section__line"></span></header>
+      <div class="pillars">
+        <article class="pillar reveal">
+          <div class="pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 6h9M6.5 8l4.3 7.8M17.5 8l-4.3 7.8"/></svg></div>
+          <h3>Automatización de procesos</h3>
+          <p>Flujos que reciben un evento, aplican reglas y dejan registro sin que nadie intervenga.</p>
+          <p class="pillar__proof mono">DeliveryBot · 39 nodos en n8n</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V3.5M9 12h.01M15 12h.01M9.5 15.5h5"/></svg></div>
+          <h3>Bots y agentes de IA</h3>
+          <p>Agentes que llaman herramientas y dejan los cálculos al código; el modelo explica, no inventa cifras.</p>
+          <p class="pillar__proof mono">VitalRoute · Aduana-Copilot · Analizador de CVs</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 14l-2 2 2 2M16 14l2 2-2 2"/></svg></div>
+          <h3>Desarrollo web</h3>
+          <p>APIs REST con seguridad JWT y pruebas, y frontends en React o JavaScript sin frameworks.</p>
+          <p class="pillar__proof mono">MindConnect · Renta de Herramientas · Banco ACME</p>
+        </article>
       </div>
-      <div class="skills">
-        <div class="skills__group reveal">
-          <h3 class="mono">Lenguajes</h3>
-          <ul><li>Python</li><li>JavaScript</li><li>SQL</li></ul>
-        </div>
-        <div class="skills__group reveal">
-          <h3 class="mono">Frontend</h3>
-          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-        </div>
-        <div class="skills__group reveal">
-          <h3 class="mono">Backend y datos</h3>
-          <ul><li>MySQL</li><li>API REST</li><li>n8n</li></ul>
-        </div>
-        <div class="skills__group reveal">
-          <h3 class="mono">Herramientas</h3>
-          <ul><li>Git</li><li>GitHub</li><li>Linux</li><li>MySQL Workbench</li><li>SCRUM</li></ul>
-        </div>
-      </div>
+
+      <ol class="process reveal" aria-label="Cómo abordo una automatización">
+        <li><span class="mono">01</span><strong>Entender el proceso</strong><small>qué se hace a mano hoy</small></li>
+        <li><span class="mono">02</span><strong>Definir el disparador</strong><small>mensaje, formulario o evento</small></li>
+        <li><span class="mono">03</span><strong>Programar la lógica</strong><small>código simple y probado</small></li>
+        <li><span class="mono">04</span><strong>Integrar y registrar</strong><small>APIs, base de datos y avisos</small></li>
+      </ol>
     </section>
 
-    <!-- PROYECTOS -->
-    <section class="section" id="proyectos">
-      <div class="section__head">
-        <span class="mono section__num">03</span>
-        <h2 class="section__title reveal">Proyectos</h2>
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section wrap" id="proyectos">
+      <header class="section__head reveal"><span class="section__num">03</span><h2>Proyectos destacados</h2><span class="section__line"></span></header>
+      <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
+        <button class="chip is-active" data-filtro="todos" aria-pressed="true">Todos</button>
+        <button class="chip" data-filtro="ia" aria-pressed="false">IA y automatización</button>
+        <button class="chip" data-filtro="backend" aria-pressed="false">Backend</button>
+        <button class="chip" data-filtro="web" aria-pressed="false">Web</button>
       </div>
-      <div class="projects">
+      <!-- Las tarjetas se generan desde js/proyectos.js -->
+      <div class="projects" id="lista-proyectos"></div>
 
-        <article class="project reveal">
-          <div class="project__top">
-            <h3 class="project__title">Banco ACME</h3>
-            <span class="project__tag mono">Web · JavaScript</span>
-          </div>
-          <p class="project__desc">Una banca web completa en JavaScript puro: transferencias, retiros, pagos, metas de ahorro e incluso tasas de cambio en vivo con web workers. Es el proyecto donde más me reté con la lógica.</p>
-          <div class="project__foot">
-            <span class="mono">JavaScript · Web Workers · localStorage</span>
-            <a href="https://github.com/CamiloGarcia079/CAMILO-BANCO-EVALUACION" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project reveal">
-          <div class="project__top">
-            <h3 class="project__title">DeliveryBot</h3>
-            <span class="project__tag mono">Automatización</span>
-          </div>
-          <p class="project__desc">Un bot que toma pedidos de una cafetería por Telegram, conectado a Google Sheets en tiempo real. Aquí fue donde aprendí a pensar en flujos de automatización de principio a fin.</p>
-          <div class="project__foot">
-            <span class="mono">n8n · Telegram API · Google Sheets</span>
-            <a href="https://github.com/CamiloGarcia079/Proyecto_DeliveryBot_GarciaCamilo" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project reveal">
-          <div class="project__top">
-            <h3 class="project__title">Campus Pizza</h3>
-            <span class="project__tag mono">Base de datos</span>
-          </div>
-          <p class="project__desc">Diseñé la base de datos de una pizzería y le escribí 20 consultas para sacarle información real: qué se vende más, quién compra más y cómo se mueven las ventas.</p>
-          <div class="project__foot">
-            <span class="mono">MySQL · SQL</span>
-            <a href="https://github.com/CamiloGarcia079/Evaluacion-Camilo-Garcia-3H-Campus-Pizza" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project reveal">
-          <div class="project__top">
-            <h3 class="project__title">Plan de Ahorro</h3>
-            <span class="project__tag mono">Web</span>
-          </div>
-          <p class="project__desc">Una app sencilla para llevar el control de un plan de ahorro, hecha con HTML, CSS y JavaScript puro. Los datos se guardan en el navegador, así que no se pierden al cerrar la página.</p>
-          <div class="project__foot">
-            <span class="mono">HTML · CSS · JavaScript</span>
-            <a href="https://github.com/CamiloGarcia079/Plan-de-ahorro-Camilo-" class="project__link" target="_blank" rel="noopener">Ver en GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project project--wide reveal">
-          <div class="project__top">
-            <h3 class="project__title">GUARDIAN <span class="project__badge mono">Hackathon</span></h3>
-            <span class="project__tag mono">IA · Visión</span>
-          </div>
-          <p class="project__desc">En el Hackathon presencial de IA "Visual Agents" construimos en equipo un sistema predictivo de seguridad vial con visión por computadora. Me encargué de integrar los módulos del equipo y de liderar la presentación final.</p>
-          <div class="project__foot">
-            <span class="mono">Python · FiftyOne / Voxel51 · Gemini</span>
-            <span class="project__link project__link--muted">Proyecto en equipo</span>
-          </div>
-        </article>
-
-      </div>
+      <h3 class="subhead reveal">Otros proyectos</h3>
+      <ul class="others reveal">
+        <li><a href="https://github.com/CamiloGarcia079/PROYECTO---EVALUACION-Camilo-Garc-a-" target="_blank" rel="noopener"><strong>Plataforma SST y PESV</strong><span>Base de datos multiempresa con vistas, funciones y triggers</span><em class="mono">PostgreSQL</em></a></li>
+        <li><a href="https://github.com/CamiloGarcia079/Gestor-de-tareas-con-base-de-datos-Actividad" target="_blank" rel="noopener"><strong>Gestor de tareas Scrum</strong><span>Aplicación de escritorio con acceso a datos por DAO</span><em class="mono">Java Swing · JDBC · MySQL</em></a></li>
+        <li><a href="https://github.com/CamiloGarcia079/Evaluacion-Camilo-Garcia-3H-Campus-Pizza" target="_blank" rel="noopener"><strong>Campus Pizza</strong><span>Modelo relacional con 20 consultas de análisis de ventas</span><em class="mono">MySQL</em></a></li>
+        <li><a href="https://github.com/andresguerra321/GUARDIAN" target="_blank" rel="noopener"><strong>GUARDIAN</strong><span>Seguridad vial con visión por computadora, hackathon</span><em class="mono">Python · FiftyOne · Gemini</em></a></li>
+      </ul>
     </section>
 
-    <!-- CONTACTO -->
-    <section class="section section--contact" id="contacto">
-      <div class="section__head">
-        <span class="mono section__num">04</span>
-        <h2 class="section__title reveal">Contacto</h2>
-      </div>
+    <!-- ============ TRAYECTORIA ============ -->
+    <section class="section wrap" id="trayectoria">
+      <header class="section__head reveal"><span class="section__num">04</span><h2>Trayectoria</h2><span class="section__line"></span></header>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="timeline__date mono">Próximo · Dic 2026</span>
+          <h3>Etapa productiva · Globant</h3>
+          <p>Inicio de mi práctica profesional como desarrollador.</p>
+        </li>
+        <li class="reveal">
+          <span class="timeline__date mono">2026</span>
+          <h3>Técnico en Desarrollo de Software e IA · CampusLands</h3>
+          <p>Formación intensiva de un año: Java y Spring Boot, Python, JavaScript y TypeScript, MySQL y PostgreSQL, automatización con n8n e inteligencia artificial aplicada.</p>
+        </li>
+        <li class="reveal">
+          <span class="timeline__date mono">Reto Agente 2026</span>
+          <h3>Platica.mx con CampusLands · Aduana-Copilot</h3>
+          <p>En pareja con Daniel Osorio. Me encargué del agente, el gateway y la interfaz de un cotizador aduanal donde el modelo nunca hace las cuentas.</p>
+        </li>
+        <li class="reveal">
+          <span class="timeline__date mono">Hackathon</span>
+          <h3>"Visual Agents" · GUARDIAN</h3>
+          <p>Sistema predictivo de seguridad vial con FiftyOne y Gemini. Mi rol: integración entre módulos, contratos, revisión de código antes de la entrega y presentación final.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="section wrap" id="stack">
+      <header class="section__head reveal"><span class="section__num">05</span><h2>Tecnologías</h2><span class="section__line"></span></header>
+      <p class="section__intro reveal">Solo pongo lo que usé en un proyecto real. Pasa el cursor o toca una tecnología para ver dónde está.</p>
+      <div class="stack" id="stack-grid"></div>
+      <p class="stack__where mono reveal" id="stack-donde" aria-live="polite">Selecciona una tecnología.</p>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section wrap" id="contacto">
       <div class="contact reveal">
-        <p class="contact__line">¿Tienes un proyecto en mente o una oportunidad? Escríbeme, me gusta hablar de lo que se puede construir.</p>
+        <span class="section__num">06</span>
+        <h2 class="contact__title">Hablemos de lo que<br><span class="grad">se puede automatizar.</span></h2>
+        <p>Estoy abierto a conversar sobre proyectos, oportunidades y equipos donde pueda aportar.</p>
+        <div class="contact__mail">
+          <a href="mailto:kaliko2411@gmail.com" class="contact__address">kaliko2411@gmail.com</a>
+          <button class="btn btn--small" id="copiar" type="button" data-correo="kaliko2411@gmail.com">Copiar correo</button>
+        </div>
         <div class="contact__links">
-          <a href="mailto:kaliko2411@gmail.com" class="contact__item">
-            <span class="mono">Correo</span>
-            <span>kaliko2411@gmail.com</span>
-          </a>
-          <a href="https://www.linkedin.com/in/camilo-garcia-7570693b7/" target="_blank" rel="noopener" class="contact__item">
-            <span class="mono">LinkedIn</span>
-            <span>camilo-garcia</span>
-          </a>
-          <a href="https://github.com/CamiloGarcia079" target="_blank" rel="noopener" class="contact__item">
-            <span class="mono">GitHub</span>
-            <span>CamiloGarcia079</span>
-          </a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/camilo-garcia-7570693b7/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn--ghost" href="https://github.com/CamiloGarcia079" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn--ghost" href="https://github.com/CamiloGarcia079/hoja-de-vida-profesional/blob/main/HojaDeVida_Profesional_CamiloGarcia.pdf" target="_blank" rel="noopener">Hoja de vida</a>
         </div>
       </div>
     </section>
-
   </main>
 
-  <footer class="footer">
-    <span>© 2026 Camilo García</span>
-    <span class="mono">Hecho con HTML, CSS y JavaScript</span>
+  <footer class="footer wrap">
+    <span>Camilo Andrés García Almeida · 2026</span>
+    <span class="mono">HTML, CSS y JavaScript, sin frameworks</span>
   </footer>
 
+  <!-- Ficha de proyecto -->
+  <dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <div class="modal__inner">
+      <button class="icon-btn modal__close" id="cerrar-modal" type="button" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <p class="modal__tag mono" id="modal-tag"></p>
+      <h3 id="modal-titulo"></h3>
+      <p class="modal__role" id="modal-rol"></p>
+      <div class="modal__body" id="modal-cuerpo"></div>
+      <div class="modal__chips" id="modal-chips"></div>
+      <a class="btn btn--solid" id="modal-repo" href="#" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/proyectos.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
