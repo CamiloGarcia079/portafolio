@@ -21,21 +21,13 @@ function iniciarTema() {
 }
 
 /* ---------- Idioma español / inglés ---------- */
-/* El botón de hoja de vida abre la versión del idioma elegido */
-function actualizarHojaDeVida() {
-  const lang = idioma() === 'en' ? 'EN' : 'ES';
-  $$('a[href*="HojaDeVida_Campus_"]').forEach((a) => { a.href = a.href.replace(/_(ES|EN)_/, `_${lang}_`); });
-}
-
 function iniciarIdioma() {
   aplicarIdioma(idioma());
-  actualizarHojaDeVida();
   $$('.lang button').forEach((b) => b.addEventListener('click', () => {
     if (b.dataset.lang === idioma()) return;
     aplicarIdioma(b.dataset.lang);
     try { localStorage.setItem('idioma', b.dataset.lang); } catch (e) { /* modo privado */ }
     pintarContenido();                       // vuelve a armar tarjetas en el nuevo idioma
-    actualizarHojaDeVida();
     $('#flow-estado').textContent = idioma() === 'en' ? 'waiting' : 'en espera';
     $('#flow-log').innerHTML = '';
     actualizarGmail();

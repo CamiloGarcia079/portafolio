@@ -29,7 +29,7 @@ const EN = {
   'sobre.p3': 'I work well in teams, explain technical topics in simple words and deliver projects that someone else can understand and run without help.',
   'f.titulo': 'Degree', 'f.titulo.v': 'Software Development and AI Technician',
   'f.paso': 'Next step', 'f.paso.v': 'Internship · Globant', 'f.ubic': 'Location',
-  'f.idiomas': 'Languages', 'f.idiomas.v': 'Spanish (native) · English A2',
+  'f.idiomas': 'Languages', 'f.idiomas.v': 'Spanish (native) · English A2 · Portuguese A1',
   'f.rol': 'Role', 'f.rol.v': 'Junior Developer', 'f.enfoque': 'Focus', 'f.enfoque.v': 'Automation, bots and web',
   'sobre.cv': 'Download résumé',
 
